@@ -15,4 +15,12 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="contact_us_title">Contact Us</string>
+    <string name="title_activity_contact_us">ContactUs</string>
+    <string name="about_textView">About:</string>
+    <string name="timeOfOpening_textView">Opening Time:</string>
+    <string name="phone">Phone Number:</string>
+    <string name="address">Address</string>
+    <string name="email">Email</string>
+
 </resources>
