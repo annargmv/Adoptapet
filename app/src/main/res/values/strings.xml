@@ -22,5 +22,6 @@
     <string name="phone">Phone Number:</string>
     <string name="address">Address</string>
     <string name="email">Email</string>
+    <string name="logo">Logo</string>
 
 </resources>

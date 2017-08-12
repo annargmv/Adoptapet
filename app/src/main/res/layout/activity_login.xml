@@ -55,7 +55,7 @@
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
-        android:contentDescription="logo"/>
+        android:contentDescription="@string/logo"/>
 
     <LinearLayout
         android:id="@+id/email_login_form"
