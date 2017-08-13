@@ -23,5 +23,34 @@
     <string name="address">Address</string>
     <string name="email">Email</string>
     <string name="logo">Logo</string>
+    <string name="signupImage">Image</string>
+    <string name="emailTextView">Email</string>
+    <string name="emailEditText">Email Text</string>
+    <string name="passwordTextView">Password</string>
+    <string name="nameTextView">Name</string>
+    <string name="phoneTextView">Phone</string>
+    <string name="submitButton">Submit</string>
+    <string name="checkBox">CheckBox</string>
+    <string name="editText">חיפוש לפי שם</string>
+    <string name="textView3">מידע למאמץ</string>
+    <string name="textView4">בריאות</string>
+    <string name="textView7">עיקור/סירוס</string>
+    <string name="textView2">לאחר אימוץ הכלב יש לקחת אותו לבדיקה שגרתית אצל הווטרינר לרישום הכלב, העברת שבב הזיהוי על שמכם וקבלת הדרכה לגבי טיפול שוטף וחיסונים</string>
+    <string name="textView8">ציוד בסיסי</string>
+    <string name="textView">חובה!  לעיקור/סירוס יתרונות רפואיים-בריאותיים, התנהגותיים ומוסריים ואף כלכליים</string>
+    <string name="textView5">קולר, תג עם מספר הטל\'שלכם,רצועה,מברשת, מיטה או שמיכה, כלים לאוכל ומים, מזון. אם הכלב ישהה בחצר: מלונה אטומה, יבשה ומקורה, שמיכה או כרית, חצר מגודרת, סגורה ושער נעול</string>
+    <string name="textView6">דאג לתזונה הולמת לכלב, היוועץ בווטרינר בהתאם לגודל הכלב. רצוי לרכוש מזון יבש איכותי בחנויות לציוד ומזון לבע"ח או אצל וטרינר. ניתן לחלק את כמות האוכל ל-2 ארוחות נפרדות. עצמות עוף, שוקולד ותרופות מסוימות של בני אדם מזיקים לכלבים! בכל מקרה, מומלץ לקנות לכלב צעצועים ועצמות המיועדים לו, למשחק ועניין.</string>
+    <string name="textView14">טיול</string>
+    <string name="textView15">על כלב לצאת לטייל לפחות 3 פעמים ביום. טיילו עם הכלב עם רצועה! לאחר שהכלב מתרגל וחוזר כשקוראים לו, אפשר לשחרר אותו במקומות בטוחים ללא מכוניות, כגון גינות ייעודיות לכלבים, פארקים וחוף הים. שחרור הכלב לטייל לבד ללא השגחה אסור על פי חוק ומסוכן לכלב ולסביבה.</string>
+    <string name="textView13">אין להוציא או להפגיש עם כלבים אחרים עד לאחר 3 חיסוני המשושה. לאחר מכן, חשוב שיכירו את העולם החיצון, אנשים, ילדים וכו\' ויפגשו כלבים אחרים כדי שידעו להתנהג בחברת כלבים ולא יגדלו פחדנים / תוקפנים</string>
+    <string name="textView12">שבב</string>
+    <string name="textView10">החוק מחייב לעדכן את שבב הזיהוי של הכלב ברשות המקומית שלך.  העמותה רשאית לקבל חזרה את הכלב במידה והוא לא מטופל כראוי</string>
+    <string name="textView11">גורים</string>
+    <string name="textView9">מזון</string>
+    <string name="imageView">Image</string>
+
+
+
+
 
 </resources>

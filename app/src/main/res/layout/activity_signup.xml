@@ -16,65 +16,77 @@
         tools:layout_editor_absoluteY="8dp">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/signupImage"
             android:layout_width="276dp"
             android:layout_height="94dp"
-            app:srcCompat="@drawable/signupicon"
-            android:contentDescription="" />
+            android:contentDescription="@string/signupImage"
+            app:srcCompat="@drawable/signupicon"/>
 
         <TextView
+            android:id="@+id/emailTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email"
-            />
+            android:text="@string/emailTextView"/>
+
+
         <EditText
-            android:id="@+id/etMail"
+            android:id="@+id/emailEditText"
+            android:labelFor="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            />
+            android:inputType="textEmailAddress"/>
+
         <TextView
+            android:id="@+id/passwordTextView"
+            android:labelFor="@+id/passwotdEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password"
-            />
+            android:text="@string/passwordTextView"/>
+
         <EditText
-            android:id="@+id/etPassword"
+            android:id="@+id/passwotdEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:inputType="textPassword"
-            android:layout_margin="10dp"
             />
+
         <TextView
+            android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name"
-            />
+            android:text="@string/nameTextView"/>
+
         <EditText
-            android:id="@+id/etName"
+            android:id="@+id/nameEditText"
+            android:labelFor="@+id/nameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            />
+            android:inputType="text"/>
+
         <TextView
+            android:id="@+id/phoneTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Phone"
-            />
+            android:text="@string/phone"/>
+
         <EditText
-            android:id="@+id/etPhone"
+            android:id="@+id/phoneEditText"
+            android:labelFor="@+id/phoneEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:inputType="phone"
-            android:layout_margin="10dp"
             />
 
         <Button
-            android:id="@+id/bSubmit"
-            android:text="Submit"
+            android:id="@+id/submitButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="tryToSubmit"
+            android:text="@string/submitButton"
 
 
             />
