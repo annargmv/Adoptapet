@@ -33,7 +33,10 @@
                 android:value="com.example.anna_rgmv.adoptapet.LoginActivity" />
         </activity>
         <activity android:name=".SignupActivity" />
-        <activity android:name=".InfoActivity"></activity>
+        <activity android:name=".InfoActivity" />
+        <activity android:name=".UserActivity" />
+        <activity android:name=".DogActivity" />
+        <activity android:name=".FindDogActivity"></activity>
     </application>
 
 </manifest>
