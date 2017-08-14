@@ -45,7 +45,7 @@
             android:text="@string/passwordTextView"/>
 
         <EditText
-            android:id="@+id/passwotdEditText"
+            android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"

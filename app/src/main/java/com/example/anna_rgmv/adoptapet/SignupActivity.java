@@ -17,11 +17,11 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        bSubmit=(Button)findViewById(R.id.bSubmit);
-        etMail=(EditText)findViewById(R.id.etMail);
-        etPhone=(EditText)findViewById(R.id.etPhone);
-        etPassword=(EditText)findViewById(R.id.etPassword);
-        etName=(EditText)findViewById(R.id.etName);
+        bSubmit=(Button)findViewById(R.id.submitButton);
+        etMail=(EditText)findViewById(R.id.emailEditText);
+        etPhone=(EditText)findViewById(R.id.phoneEditText);
+        etPassword=(EditText)findViewById(R.id.passwordEditText);
+        etName=(EditText)findViewById(R.id.nameEditText);
 
     }
 
