@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         //Add setOnClickListener for the buttons
 
         logo = (ImageView) findViewById(R.id.logo);
-        emialText = (AutoCompleteTextView) findViewById(R.id.email);
+        emialText = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         mEmailLogInButton = (Button) findViewById(R.id.email_login_button);
 
