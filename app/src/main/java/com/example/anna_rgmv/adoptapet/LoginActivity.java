@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         } else if ((emialText.getText().length() != 0) && (password.getText().length() == 0)) {
 
             Toast.makeText(getApplicationContext(), "Please enter your email and password", Toast.LENGTH_LONG).show();
+
         }
 
 
