@@ -1,8 +1,7 @@
 package com.example.anna_rgmv.adoptapet;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +25,8 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void tryToSubmit(View view){
+
+        
 
     }
 
