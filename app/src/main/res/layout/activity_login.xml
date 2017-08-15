@@ -34,7 +34,7 @@
 
 
 
-            <AutoCompleteTextView
+            <EditText
                 android:id="@+id/email"
                 android:layout_width="347dp"
                 android:layout_height="57dp"

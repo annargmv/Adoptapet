@@ -9,6 +9,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -19,7 +20,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
     Button mEmailLogInButton;
     Button mEmailSignUpButton;
-    AutoCompleteTextView emialText;
+    EditText emialText;
     EditText password;
     ImageView logo;
 
