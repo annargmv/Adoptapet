@@ -25,11 +25,13 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     ImageView logo;
 
     public void logIn(View view) {
+        Intent buttonIntent = new Intent(this, UserActivity.class);
+        startActivity(buttonIntent);
 
         if (emialText.getText().length() != 0 && password.getText().length() != 0) {
 
-            Intent buttonIntent = new Intent(this, FindDogActivity.class);
-            startActivity(buttonIntent);
+           // Intent buttonIntent = new Intent(this, FindDogActivity.class);
+            //startActivity(buttonIntent);
 
         } else if ((emialText.getText().length() == 0) && (password.getText().length() == 0)) {
 

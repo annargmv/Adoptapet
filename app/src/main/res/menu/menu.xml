@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:title="User"
+        android:id="@+id/menuUser"/>
+    <item android:title="Find a dog"
+        android:id="@+id/menuFind"/>
+    <item android:title="Information"
+        android:id="@+id/menuInfo"/>
+    <item android:title="Log-out"
+        android:id="@+id/menuLogout"/>
 
 </menu>
