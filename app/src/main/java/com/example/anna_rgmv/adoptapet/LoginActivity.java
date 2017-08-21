@@ -3,6 +3,7 @@ package com.example.anna_rgmv.adoptapet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AutoCompleteTextView;
@@ -10,7 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.SaveCallback;
 /**
  * A login screen that offers login via email/password.
  */
@@ -58,7 +62,25 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        ///////////////////////////////////////////
+        Parse.initialize(new Parse.Configuration.Builder(this)
+                .applicationId("86d41a93f1bd5d33ae9bba0c7ac97da4c326eafd")
+                .server("http://ec2-34-201-149-100.compute-1.amazonaws.com:80/parse")
+                .build()
+        );
+        /*ParseObject object=new ParseObject("Exemple");
+        object.put("myNumber","123");
+        object.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e!=null){
+                    Log.i("testing:","Failed");
+                }else{
+                    Log.i("testing:","Successful");
+                }
+            }
+        });
+        */
         //Add setOnClickListener for the buttons
 
         logo = (ImageView) findViewById(R.id.logo);
