@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         startActivity(buttonIntent);
 
         if (emialText.getText().length() != 0 && password.getText().length() != 0) {
-
+           // if()
            // Intent buttonIntent = new Intent(this, FindDogActivity.class);
             //startActivity(buttonIntent);
 
