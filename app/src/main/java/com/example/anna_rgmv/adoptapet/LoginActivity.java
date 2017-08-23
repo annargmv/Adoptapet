@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 /**
  * A login screen that offers login via email/password.
@@ -28,13 +29,20 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     ImageView logo;
 
     public void logIn(View view) {
-        Intent buttonIntent = new Intent(this, UserActivity.class);
-        startActivity(buttonIntent);
-
         if (emialText.getText().length() != 0 && password.getText().length() != 0) {
            // if()
            // Intent buttonIntent = new Intent(this, FindDogActivity.class);
             //startActivity(buttonIntent);
+            try {
+                ParseUser user = ParseUser.logIn(emialText.getText().toString(), password.getText().toString());
+                Intent Intent = new Intent(this, FindDogActivity.class);
+                startActivity(Intent);
+
+            } catch (ParseException e) {
+                Toast.makeText(LoginActivity.this,e.toString(),Toast.LENGTH_LONG).show();
+                Log.i("error Login:",e.toString());
+
+            }
 
         } else if ((emialText.getText().length() == 0) && (password.getText().length() == 0)) {
 
@@ -62,25 +70,16 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ///////////////////////////////////////////
+        ////////////////initialize pasre service///////////////////////////
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("86d41a93f1bd5d33ae9bba0c7ac97da4c326eafd")
                 .server("http://ec2-34-201-149-100.compute-1.amazonaws.com:80/parse")
                 .build()
         );
-        /*ParseObject object=new ParseObject("Exemple");
-        object.put("myNumber","123");
-        object.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if(e!=null){
-                    Log.i("testing:","Failed");
-                }else{
-                    Log.i("testing:","Successful");
-                }
-            }
-        });
-        */
+////////////////////////////////////////////////////////////////////////////
+       // Intent buttonIntent = new Intent(this, FindDogActivity.class);
+       //startActivity(buttonIntent);
+//////////////////////////////////////////////////////////////////////////////
         //Add setOnClickListener for the buttons
 
         logo = (ImageView) findViewById(R.id.logo);
