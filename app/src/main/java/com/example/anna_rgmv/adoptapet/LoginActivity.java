@@ -1,21 +1,21 @@
 package com.example.anna_rgmv.adoptapet;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-import com.parse.Parse;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseUser;
-import com.parse.SaveCallback;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 /**
  * A login screen that offers login via email/password.
  */
@@ -24,25 +24,63 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
     Button mEmailLogInButton;
     Button mEmailSignUpButton;
-    AutoCompleteTextView emialText;
+    EditText emialText;
     EditText password;
     ImageView logo;
+    HttpURLConnection urlConnection;
+    String result;
 
-    public void logIn(View view) {
-        if (emialText.getText().length() != 0 && password.getText().length() != 0) {
-           // if()
-           // Intent buttonIntent = new Intent(this, FindDogActivity.class);
-            //startActivity(buttonIntent);
+    public class Contant extends AsyncTask<String,Void,String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            String result = " ";
+            URL url;
+            HttpURLConnection urlConnection =  null;
+
             try {
-                ParseUser user = ParseUser.logIn(emialText.getText().toString(), password.getText().toString());
-                Intent Intent = new Intent(this, FindDogActivity.class);
-                startActivity(Intent);
+                url = new URL(params[0]);
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.connect();
 
-            } catch (ParseException e) {
-                Toast.makeText(LoginActivity.this,e.toString(),Toast.LENGTH_LONG).show();
-                Log.i("error Login:",e.toString());
+                InputStream in = urlConnection.getInputStream();
+                InputStreamReader reader = new InputStreamReader(in);
+
+                int data =  reader.read();
+
+                while( data != -1){
+                    char current = (char) data;
+                    result += current;
+                    data = reader.read();
+                }
+
+                return result;
+
+            }catch (Exception e){
+                e.printStackTrace();
 
             }
+
+            return null;
+        }
+    }
+
+
+    public void logIn(View view) {
+//        Intent buttonIntent = new Intent(this, UserActivity.class);
+//        startActivity(buttonIntent);
+
+
+        // checking that the user submited the fields
+
+        // --------------------------------------------------------//
+        // ADD the checking with the sql to find that the user is registered
+
+
+        if (emialText.getText().length() != 0 && password.getText().length() != 0) {
+
+            Intent buttonIntent = new Intent(this, FindDogActivity.class);
+            startActivity(buttonIntent);
 
         } else if ((emialText.getText().length() == 0) && (password.getText().length() == 0)) {
 
@@ -55,10 +93,12 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         } else if ((emialText.getText().length() != 0) && (password.getText().length() == 0)) {
 
             Toast.makeText(getApplicationContext(), "Please enter your email and password", Toast.LENGTH_LONG).show();
+
         }
 
 
     }
+
 
     public void signUp(View view) {
         mEmailSignUpButton = (Button) findViewById(R.id.email_sign_up_button);
@@ -66,26 +106,30 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         startActivity(buttonIntent);
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ////////////////initialize pasre service///////////////////////////
-        Parse.initialize(new Parse.Configuration.Builder(this)
-                .applicationId("86d41a93f1bd5d33ae9bba0c7ac97da4c326eafd")
-                .server("http://ec2-34-201-149-100.compute-1.amazonaws.com:80/parse")
-                .build()
-        );
-////////////////////////////////////////////////////////////////////////////
-       // Intent buttonIntent = new Intent(this, FindDogActivity.class);
-       //startActivity(buttonIntent);
-//////////////////////////////////////////////////////////////////////////////
+
         //Add setOnClickListener for the buttons
 
         logo = (ImageView) findViewById(R.id.logo);
-        emialText = (AutoCompleteTextView) findViewById(R.id.email);
+        emialText = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         mEmailLogInButton = (Button) findViewById(R.id.email_login_button);
+
+        Contant contant = new Contant();
+        String result = null;
+
+        try{
+            result = contant.execute("https://sparkianna.herokuapp.com/hello").get();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
+        System.out.println("The result is:" + result);
 
         //mEmailLogInButton.setOnClickListener(new OnClickListener() {
 //            @Override

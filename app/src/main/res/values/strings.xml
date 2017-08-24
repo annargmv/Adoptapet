@@ -31,6 +31,8 @@
     <string name="phoneTextView">Phone</string>
     <string name="submitButton">Submit</string>
     <string name="checkBox">CheckBox</string>
+    <string name="dogImage">Dog</string>
+    <string name="dogName">Name of the Dog</string>
     <string name="editText">חיפוש לפי שם</string>
     <string name="textView3">מידע למאמץ</string>
     <string name="textView4">בריאות</string>
@@ -48,6 +50,14 @@
     <string name="textView11">גורים</string>
     <string name="textView9">מזון</string>
     <string name="imageView">Image</string>
+    <string-array name="type">
+        <item>מעורב</item>
+        <item>גזעי</item>
+    </string-array>
+    <string-array name="gender">
+        <item>זכר</item>
+        <item>נקבה</item>
+    </string-array>
 
 
 </resources>
