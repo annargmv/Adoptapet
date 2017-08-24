@@ -83,7 +83,7 @@ public class FindDogActivity extends AppCompatActivity{
                 Toast.makeText(FindDogActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(FindDogActivity.this, DogActivity.class);
-                intent.putExtra("web[+position]",position);
+                intent.putExtra("web[+position]",imageId);
                 startActivity(intent);
 
             }
@@ -136,7 +136,13 @@ public class FindDogActivity extends AppCompatActivity{
                 startActivity(intent);
                 return true;
             case R.id.menuLogout:
-                //TODO what hepend when logout
+                intent = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.contactUs:
+                intent = new Intent(getApplicationContext(),ContactUs.class);
+                startActivity(intent);
+                return true;
             case R.id.menuInfo:
                 intent=new Intent(getApplicationContext(),InfoActivity.class);
                 startActivity(intent);

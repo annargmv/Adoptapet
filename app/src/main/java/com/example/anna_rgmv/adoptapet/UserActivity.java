@@ -1,8 +1,8 @@
 package com.example.anna_rgmv.adoptapet;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -63,6 +63,7 @@ public class UserActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(UserActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
 
+
             }
         });
 
@@ -90,7 +91,14 @@ public class UserActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.menuLogout:
-                //TODO what hepend when logout
+                //TODO what hepend when logou
+                intent = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.contactUs:
+                intent = new Intent(getApplicationContext(),ContactUs.class);
+                startActivity(intent);
+                return true;
             case R.id.menuInfo:
                 intent=new Intent(getApplicationContext(),InfoActivity.class);
                 startActivity(intent);

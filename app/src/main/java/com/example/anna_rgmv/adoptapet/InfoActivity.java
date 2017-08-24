@@ -37,7 +37,13 @@ public class InfoActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.menuLogout:
-                //TODO what hepend when logout
+                intent = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.contactUs:
+                intent = new Intent(getApplicationContext(),ContactUs.class);
+                startActivity(intent);
+                return true;
             case R.id.menuInfo:
                 intent=new Intent(getApplicationContext(),InfoActivity.class);
                 startActivity(intent);

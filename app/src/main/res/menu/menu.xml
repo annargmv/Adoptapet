@@ -9,7 +9,10 @@
         android:id="@+id/menuFind"/>
     <item android:title="Information"
         android:id="@+id/menuInfo"/>
+    <item android:title="Contact Us"
+          android:id="@+id/contactUs"/>
     <item android:title="Log-out"
         android:id="@+id/menuLogout"/>
+
 
 </menu>

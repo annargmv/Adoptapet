@@ -74,6 +74,9 @@ public class DogActivity extends AppCompatActivity {
                 Toast.makeText(DogActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
                 Intent intent = getIntent();
 
+                //DON'T FORGET TO SET THE IMAGE
+
+
 
 //                dogImage.buildDrawingCache();
 //                Intent i = getIntent();
@@ -116,7 +119,13 @@ public class DogActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.menuLogout:
-                //TODO what hepend when logout
+                intent = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.contactUs:
+                intent = new Intent(getApplicationContext(),ContactUs.class);
+                startActivity(intent);
+                return true;
             case R.id.menuInfo:
                 intent=new Intent(getApplicationContext(),InfoActivity.class);
                 startActivity(intent);

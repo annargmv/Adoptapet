@@ -6,17 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
+
 import com.parse.Parse;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 /**
  * A login screen that offers login via email/password.
  */
@@ -25,12 +22,13 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
     Button mEmailLogInButton;
     Button mEmailSignUpButton;
-    AutoCompleteTextView emialText;
+    EditText emialText;
     EditText password;
     ImageView logo;
 
     public void logIn(View view) {
-        Intent buttonIntent = new Intent(this, UserActivity.class);
+        mEmailLogInButton = (Button) findViewById(R.id.email_login_button);
+        Intent buttonIntent = new Intent(this, FindDogActivity.class);
         startActivity(buttonIntent);
 
         if (emialText.getText().length() != 0 && password.getText().length() != 0) {
@@ -98,9 +96,9 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 //////////////////////////////////////////////////////////////////////////////
 //Add setOnClickListener for the buttons
         logo = (ImageView) findViewById(R.id.logo);
-        emialText = (AutoCompleteTextView) findViewById(R.id.email);
+        emialText = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
-        mEmailLogInButton = (Button) findViewById(R.id.email_login_button);
+//        mEmailLogInButton = (Button) findViewById(R.id.email_login_button);
 
         //mEmailLogInButton.setOnClickListener(new OnClickListener() {
         //            @Override
