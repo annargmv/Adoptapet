@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+
 /**
  * A login screen that offers login via email/password.
  */
@@ -28,15 +29,14 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
     public void logIn(View view) {
         mEmailLogInButton = (Button) findViewById(R.id.email_login_button);
-        Intent buttonIntent = new Intent(this, FindDogActivity.class);
-        startActivity(buttonIntent);
 
         if (emialText.getText().length() != 0 && password.getText().length() != 0) {
-            // if()
-            // Intent buttonIntent = new Intent(this, FindDogActivity.class);
-            //startActivity(buttonIntent);
+
+            Intent buttonIntent = new Intent(this, FindDogActivity.class);
+            startActivity(buttonIntent);
             try {
                 ParseUser user = ParseUser.logIn(emialText.getText().toString(), password.getText().toString());
+                System.out.println("info for the user is " + user);
                 Intent Intent = new Intent(this, FindDogActivity.class);
                 startActivity(Intent);
             } catch (ParseException e) {
@@ -70,8 +70,8 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //////////////////////////////////////////
-        ////////////////initialize pasre service///////////////////////////
+
+        //initialize pasre service
         Parse.initialize(new Parse.Configuration.Builder(this)
             .applicationId("86d41a93f1bd5d33ae9bba0c7ac97da4c326eafd")
             .server("http://ec2-34-201-149-100.compute-1.amazonaws.com:80/parse")
@@ -90,10 +90,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
             }
         });
         */
-////////////////////////////////////////////////////////////////////////////
-       // Intent buttonIntent = new Intent(this, FindDogActivity.class);
-       //startActivity(buttonIntent);
-//////////////////////////////////////////////////////////////////////////////
+
 //Add setOnClickListener for the buttons
         logo = (ImageView) findViewById(R.id.logo);
         emialText = (EditText) findViewById(R.id.email);
