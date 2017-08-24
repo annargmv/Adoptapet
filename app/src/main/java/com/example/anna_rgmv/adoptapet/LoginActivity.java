@@ -1,16 +1,20 @@
 package com.example.anna_rgmv.adoptapet;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * A login screen that offers login via email/password.
@@ -23,15 +27,60 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     EditText emialText;
     EditText password;
     ImageView logo;
+    HttpURLConnection urlConnection;
+    String result;
+
+    public class Contant extends AsyncTask<String,Void,String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            String result = " ";
+            URL url;
+            HttpURLConnection urlConnection =  null;
+
+            try {
+                url = new URL(params[0]);
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.connect();
+
+                InputStream in = urlConnection.getInputStream();
+                InputStreamReader reader = new InputStreamReader(in);
+
+                int data =  reader.read();
+
+                while( data != -1){
+                    char current = (char) data;
+                    result += current;
+                    data = reader.read();
+                }
+
+                return result;
+
+            }catch (Exception e){
+                e.printStackTrace();
+
+            }
+
+            return null;
+        }
+    }
+
 
     public void logIn(View view) {
-        Intent buttonIntent = new Intent(this, UserActivity.class);
-        startActivity(buttonIntent);
+//        Intent buttonIntent = new Intent(this, UserActivity.class);
+//        startActivity(buttonIntent);
+
+
+        // checking that the user submited the fields
+
+        // --------------------------------------------------------//
+        // ADD the checking with the sql to find that the user is registered
+
 
         if (emialText.getText().length() != 0 && password.getText().length() != 0) {
 
-           // Intent buttonIntent = new Intent(this, FindDogActivity.class);
-            //startActivity(buttonIntent);
+            Intent buttonIntent = new Intent(this, FindDogActivity.class);
+            startActivity(buttonIntent);
 
         } else if ((emialText.getText().length() == 0) && (password.getText().length() == 0)) {
 
@@ -50,11 +99,13 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
     }
 
+
     public void signUp(View view) {
         mEmailSignUpButton = (Button) findViewById(R.id.email_sign_up_button);
         Intent buttonIntent = new Intent(this, SignupActivity.class);
         startActivity(buttonIntent);
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +118,18 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         emialText = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         mEmailLogInButton = (Button) findViewById(R.id.email_login_button);
+
+        Contant contant = new Contant();
+        String result = null;
+
+        try{
+            result = contant.execute("https://sparkianna.herokuapp.com/hello").get();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
+        System.out.println("The result is:" + result);
 
         //mEmailLogInButton.setOnClickListener(new OnClickListener() {
 //            @Override

@@ -1,19 +1,34 @@
 package com.example.anna_rgmv.adoptapet;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-public class FindDogActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
+public class FindDogActivity extends AppCompatActivity{
+
+    //Initializing variables
+    EditText searchByName;
+    Spinner typeSpinner;
+    Spinner genderSpinner;
     GridView grid;
+
+    //array for the adapters
+    ArrayList<String> typeArray = new ArrayList<String>();
+    ArrayList<String> genderArray = new ArrayList<String>();
+
+    //names of the dogs
     String[] web = {
             "Google",
             "Github",
@@ -32,6 +47,8 @@ public class FindDogActivity extends AppCompatActivity {
             "Blogger"
 
     } ;
+
+    //image per dog
     int[] imageId = {
             R.drawable.dog1,
             R.drawable.dog2,
@@ -50,6 +67,7 @@ public class FindDogActivity extends AppCompatActivity {
             R.drawable.dog4
     };
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,8 +82,35 @@ public class FindDogActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(FindDogActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
 
+                Intent intent = new Intent(FindDogActivity.this, DogActivity.class);
+                intent.putExtra("web[+position]",position);
+                startActivity(intent);
+
             }
         });
+
+        searchByName = (EditText) findViewById(R.id.searchByname);
+        typeSpinner = (Spinner)findViewById(R.id.typeSpinner);
+        genderSpinner = (Spinner) findViewById(R.id.genderSpinner);
+
+        //Type Spinner
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> spinerAdapter = ArrayAdapter.createFromResource (this,R.array.type, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        spinerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        typeSpinner.setAdapter(spinerAdapter);
+
+        //Gender
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> spinerGenderAdapter = ArrayAdapter.createFromResource (this,R.array.gender, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        spinerGenderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        genderSpinner.setAdapter(spinerGenderAdapter);
+
+
+
 
     }
 

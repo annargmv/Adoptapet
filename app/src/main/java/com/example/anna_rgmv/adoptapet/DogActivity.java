@@ -1,17 +1,21 @@
 package com.example.anna_rgmv.adoptapet;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class DogActivity extends AppCompatActivity {
+
+    ImageView dogImage;
+    //Bitmap image =  dogImage.getDrawingCache();
 
     GridView grid;
     String[] web = {
@@ -55,14 +59,35 @@ public class DogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dog);
+
+
         CustomGrid adapter = new CustomGrid(DogActivity.this, web, imageId);
         grid=(GridView)findViewById(R.id.grid);
+        dogImage = (ImageView) findViewById(R.id.dogImage);
+
+
         grid.setAdapter(adapter);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(DogActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
+                Intent intent = getIntent();
+
+
+//                dogImage.buildDrawingCache();
+//                Intent i = getIntent();
+//                Bundle extras = new Bundle();
+//                extras.putParcelable("imagebitmap", image);
+//                i.putExtras(extras);
+//                startActivity(i);
+//
+//
+//                Bundle extra = getIntent().getExtras();
+//                Bitmap bmp = (Bitmap) extras.getParcelable("imagebitmap");
+//
+//                dogImage.setImageBitmap(bmp);
+
 
             }
         });

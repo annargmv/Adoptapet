@@ -18,24 +18,23 @@
         tools:layout_editor_absoluteX="8dp">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/searchByname"
             android:layout_width="113dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/editText"
             android:inputType="textPersonName"
-            android:textSize="14sp" />
+            android:textSize="14sp"/>
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/typeSpinner"
             android:layout_width="117dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/checkBox" />
+        <Spinner
+            android:id="@+id/genderSpinner"
+            android:layout_width="117dp"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <ScrollView
@@ -62,7 +61,7 @@
                 android:gravity="center"
                 android:numColumns="auto_fit"
                 android:stretchMode="columnWidth"
-                tools:ignore="NestedScrolling" />
+                tools:ignore="NestedScrolling"/>
         </LinearLayout>
     </ScrollView>
 
