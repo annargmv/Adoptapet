@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.parse.ParseUser;
+
 public class InfoActivity extends AppCompatActivity {
 
     @Override
@@ -37,6 +39,7 @@ public class InfoActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.menuLogout:
+                ParseUser.logOut();
                 intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
                 return true;

@@ -12,6 +12,8 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.parse.ParseUser;
+
 public class DogActivity extends AppCompatActivity {
 
     ImageView dogImage;
@@ -119,6 +121,7 @@ public class DogActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.menuLogout:
+                ParseUser.logOut();
                 intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
                 return true;

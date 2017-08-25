@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.parse.ParseUser;
+
 public class UserActivity extends AppCompatActivity {
     GridView grid;
     String[] web = {
@@ -91,7 +93,7 @@ public class UserActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.menuLogout:
-                //TODO what hepend when logou
+                ParseUser.logOut();
                 intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
                 return true;
