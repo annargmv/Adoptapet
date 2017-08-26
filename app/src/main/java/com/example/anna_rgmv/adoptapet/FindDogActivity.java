@@ -3,7 +3,6 @@ package com.example.anna_rgmv.adoptapet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,11 +14,12 @@ import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
 
-public class FindDogActivity extends AppCompatActivity {
+public class FindDogActivity extends AppCompatActivity{
 
     //Initializing variables
     EditText searchByName;
@@ -52,6 +52,9 @@ public class FindDogActivity extends AppCompatActivity {
 
     } ;
 
+    ParseObject dogs = new ParseObject("Dog");
+    String objectId = dogs.getObjectId();
+    //ParseFile imageOfDog = new ParseFile("Dog");
 
     //image per dog
     int[] imageId = {
@@ -77,20 +80,7 @@ public class FindDogActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acivity_fd);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
+        setContentView(R.layout.activity_find_dog);
 
         CustomGrid adapter = new CustomGrid(FindDogActivity.this, web, imageId);
         grid=(GridView)findViewById(R.id.grid);
@@ -174,5 +164,5 @@ public class FindDogActivity extends AppCompatActivity {
 
         }
     }
-
 }
+
