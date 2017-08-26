@@ -15,9 +15,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class FindDogActivity extends AppCompatActivity{
 
@@ -32,67 +35,52 @@ public class FindDogActivity extends AppCompatActivity{
     ArrayList<String> typeArray = new ArrayList<String>();
     ArrayList<String> genderArray = new ArrayList<String>();
 
-    //names of the dogs
-    String[] web = {
-            "Google",
-            "Github",
-            "Instagram",
-            "Facebook",
-            "Flickr",
-            "Pinterest",
-            "Quora",
-            "Twitter",
-            "Vimeo",
-            "WordPress",
-            "Youtube",
-            "Stumbleupon",
-            "SoundCloud",
-            "Reddit",
-            "Blogger"
-
-    } ;
+    //id of the dogs
+    String[] dogId;
 
     ParseObject dogs = new ParseObject("Dog");
     String objectId = dogs.getObjectId();
     //ParseFile imageOfDog = new ParseFile("Dog");
 
     //image per dog
-    int[] imageId = {
-
-            R.drawable.dog1,
-            R.drawable.dog2,
-            R.drawable.dog3,
-            R.drawable.dog4,
-            R.drawable.dog2,
-            R.drawable.dog3,
-            R.drawable.dog1,
-            R.drawable.dog4,
-            R.drawable.dog3,
-            R.drawable.dog2,
-            R.drawable.dog4,
-            R.drawable.dog1,
-            R.drawable.dog1,
-            R.drawable.dog3,
-            R.drawable.dog4
-    };
-
+    int[] posId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_dog);
+        ///////////////////////Retrieving dogs id from parse//////////////////////////
+        ParseQuery query = new ParseQuery("Dog");
+        query.selectKeys(Arrays.asList("objectId"));
+        {
+            try{
+                List<ParseObject> test = query.find();
+                dogId=new String[test.size()];
+                posId =new int[test.size()];
+                for(int i=0;i<test.size();i++){
+                    dogId[i]=test.get(i).getObjectId();
+                    posId[i]=i;
+                    //String[] str = {test.get(x).getString(uname)};
+                    //text.setText("Username: "+str[x]+"\n");
+                }
+            }
+            catch (com.parse.ParseException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
 
-        CustomGrid adapter = new CustomGrid(FindDogActivity.this, web, imageId);
+        CustomGrid adapter = new CustomGrid(FindDogActivity.this, dogId, posId);
         grid=(GridView)findViewById(R.id.grid);
         grid.setAdapter(adapter);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(FindDogActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
+                Toast.makeText(FindDogActivity.this, "You Clicked at " + dogId[+ position], Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(FindDogActivity.this, DogActivity.class);
-                intent.putExtra("web[+position]",imageId);
+                intent.putExtra("dogId", dogId[position]);
                 startActivity(intent);
 
             }

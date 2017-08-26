@@ -1,8 +1,11 @@
 package com.example.anna_rgmv.adoptapet;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,7 +16,16 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.parse.GetCallback;
+import com.parse.GetDataCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class DogActivity extends AppCompatActivity {
 
@@ -27,41 +39,9 @@ public class DogActivity extends AppCompatActivity {
     //Bitmap image =  dogImage.getDrawingCache();
 
     GridView grid;
-    String[] web = {
-            "Google",
-            "Github",
-            "Instagram",
-            "Facebook",
-            "Flickr",
-            "Pinterest",
-            "Quora",
-            "Twitter",
-            "Vimeo",
-            "WordPress",
-            "Youtube",
-            "Stumbleupon",
-            "SoundCloud",
-            "Reddit",
-            "Blogger"
+    String[] dogId;
 
-    } ;
-    int[] imageId = {
-            R.drawable.dog1,
-            R.drawable.dog2,
-            R.drawable.dog3,
-            R.drawable.dog4,
-            R.drawable.dog2,
-            R.drawable.dog3,
-            R.drawable.dog1,
-            R.drawable.dog4,
-            R.drawable.dog3,
-            R.drawable.dog2,
-            R.drawable.dog4,
-            R.drawable.dog1,
-            R.drawable.dog1,
-            R.drawable.dog3,
-            R.drawable.dog4
-    };
+    int[] posId;
 
     
     @Override
@@ -69,44 +49,87 @@ public class DogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dog);
 
-
-        CustomGrid adapter = new CustomGrid(DogActivity.this, web, imageId);
+        ///////////////////////Retrieving dogs id from parse//////////////////////////
+        ParseQuery query = new ParseQuery("Dog");
+        query.selectKeys(Arrays.asList("objectId"));
+        {
+            try{
+                List<ParseObject> test = query.find();
+                dogId=new String[test.size()];
+                posId =new int[test.size()];
+                for(int i=0;i<test.size();i++){
+                    dogId[i]=test.get(i).getObjectId();
+                    posId[i]=i;
+                    //String[] str = {test.get(x).getString(uname)};
+                    //text.setText("Username: "+str[x]+"\n");
+                }
+            }
+            catch (com.parse.ParseException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+////////////////////////////////////////////////////////////////////////////////
+        CustomGrid adapter = new CustomGrid(DogActivity.this, dogId, posId);
         grid=(GridView)findViewById(R.id.grid);
+
         dogImage = (ImageView) findViewById(R.id.dogImage);
         wishList = (ImageView) findViewById(R.id.wishlist);
-
         dogName = (EditText) findViewById(R.id.dogName);
         dogInfo = (EditText) findViewById(R.id.infoDog);
+        //the intent info from FindDogActivity
+        String data = getIntent().getExtras().getString("dogId");
+        // Locate the class table named "Dog" in Parse.com
+        ParseQuery<ParseObject> query2=ParseQuery.getQuery("Dog");
+        // Locate the objectId from the class
+        query2.getInBackground(data, new GetCallback<ParseObject>() {
+            public void done(ParseObject object,ParseException e) {
+                // TODO Auto-generated method stub
+                // Locate the column named "ImageDog" and set the string
+                ParseFile fileObject = (ParseFile) object.get("ImageDog");
+                String name=object.getString("dogName");
+                String info=object.getString("notes");
+                dogName.setText(name);
+                dogInfo.setText(info);
+                fileObject.getDataInBackground(new GetDataCallback() {
+                    public void done(byte[] data,
+                                     ParseException e) {
+                        if (e == null) {
+                            Log.d("test",
+                                    "We've got data in data.");
+                            // Decode the Byte[] into Bitmap
+                            Bitmap bmp = BitmapFactory.decodeByteArray(data, 0,data.length);
+                            // Set the Bitmap into the ImageView
+                            dogImage.setImageBitmap(bmp);
+
+                        } else {
+                            Log.d("test",
+                                    "There was a problem downloading the data.");
+                        }
+                    }
+                });
+            }
+        });
+
 
 
         grid.setAdapter(adapter);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(DogActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
-                Intent intent = getIntent();
+                Toast.makeText(DogActivity.this, "You Clicked at " + dogId[+ position], Toast.LENGTH_SHORT).show();
 
-                //DON'T FORGET TO SET THE IMAGE
-
-
-
-//                dogImage.buildDrawingCache();
-//                Intent i = getIntent();
-//                Bundle extras = new Bundle();
-//                extras.putParcelable("imagebitmap", image);
-//                i.putExtras(extras);
-//                startActivity(i);
-//
-//
-//                Bundle extra = getIntent().getExtras();
-//                Bitmap bmp = (Bitmap) extras.getParcelable("imagebitmap");
-//
-//                dogImage.setImageBitmap(bmp);
-
+                Intent intent = new Intent(DogActivity.this, DogActivity.class);
+                intent.putExtra("dogId", dogId[position]);
+                startActivity(intent);
 
             }
         });
+
+
+
+
+
 
     }
 
