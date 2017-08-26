@@ -14,6 +14,7 @@ import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class FindDogActivity extends AppCompatActivity{
     Spinner typeSpinner;
     Spinner genderSpinner;
     GridView grid;
+
 
     //array for the adapters
     ArrayList<String> typeArray = new ArrayList<String>();
@@ -50,8 +52,13 @@ public class FindDogActivity extends AppCompatActivity{
 
     } ;
 
+    ParseObject dogs = new ParseObject("Dog");
+    String objectId = dogs.getObjectId();
+    //ParseFile imageOfDog = new ParseFile("Dog");
+
     //image per dog
     int[] imageId = {
+
             R.drawable.dog1,
             R.drawable.dog2,
             R.drawable.dog3,
@@ -111,10 +118,12 @@ public class FindDogActivity extends AppCompatActivity{
         // Apply the adapter to the spinner
         genderSpinner.setAdapter(spinerGenderAdapter);
 
-
-
-
     }
+
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

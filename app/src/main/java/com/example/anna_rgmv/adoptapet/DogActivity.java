@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -17,6 +18,12 @@ import com.parse.ParseUser;
 public class DogActivity extends AppCompatActivity {
 
     ImageView dogImage;
+    ImageView wishList;
+
+    EditText dogName;
+    EditText dogInfo;
+
+
     //Bitmap image =  dogImage.getDrawingCache();
 
     GridView grid;
@@ -66,6 +73,10 @@ public class DogActivity extends AppCompatActivity {
         CustomGrid adapter = new CustomGrid(DogActivity.this, web, imageId);
         grid=(GridView)findViewById(R.id.grid);
         dogImage = (ImageView) findViewById(R.id.dogImage);
+        wishList = (ImageView) findViewById(R.id.wishlist);
+
+        dogName = (EditText) findViewById(R.id.dogName);
+        dogInfo = (EditText) findViewById(R.id.infoDog);
 
 
         grid.setAdapter(adapter);

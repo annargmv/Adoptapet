@@ -26,23 +26,20 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     EditText emialText;
     EditText password;
     ImageView logo;
-/**
-* when click on login button verify the email and password with the server data
-* */
+
     public void logIn(View view) {
         mEmailLogInButton = (Button) findViewById(R.id.email_login_button);
 
         if (emialText.getText().length() != 0 && password.getText().length() != 0) {
-
-            //Intent buttonIntent = new Intent(this, FindDogActivity.class);
-            //startActivity(buttonIntent);
             try {
+
                 ParseUser user = ParseUser.logIn(emialText.getText().toString(), password.getText().toString());
                 System.out.println("info for the user is " + user);
-                Intent Intent = new Intent(this, FindDogActivity.class);
-                startActivity(Intent);
+                Intent buttonIntent = new Intent(this, FindDogActivity.class);
+                startActivity(buttonIntent);
+
             } catch (ParseException e) {
-                Toast.makeText(LoginActivity.this,e.toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
                 Log.i("error Login:",e.toString());
             }
 
@@ -61,9 +58,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
 
     }
-/**
-* when click on signup buttun
-* */
+
     public void signUp(View view) {
         mEmailSignUpButton = (Button) findViewById(R.id.email_sign_up_button);
         Intent buttonIntent = new Intent(this, SignupActivity.class);

@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:text="@string/textView3"
+                android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="24sp"/>
