@@ -8,54 +8,73 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
+import android.widget.TextView;
 
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 public class UserActivity extends AppCompatActivity {
-    GridView grid;
-    String[] web = {
-            "Google",
-            "Github",
-            "Instagram",
-            "Facebook",
-            "Flickr",
-            "Pinterest",
-            "Quora",
-            "Twitter",
-            "Vimeo",
-            "WordPress",
-            "Youtube",
-            "Stumbleupon",
-            "SoundCloud",
-            "Reddit",
-            "Blogger"
 
-    } ;
-    int[] imageId = {
-            R.drawable.dog1,
-            R.drawable.dog2,
-            R.drawable.dog3,
-            R.drawable.dog4,
-            R.drawable.dog2,
-            R.drawable.dog3,
-            R.drawable.dog1,
-            R.drawable.dog4,
-            R.drawable.dog3,
-            R.drawable.dog2,
-            R.drawable.dog4,
-            R.drawable.dog1,
-            R.drawable.dog1,
-            R.drawable.dog3,
-            R.drawable.dog4
-    };
+    TextView userName ;
+    TextView userEmail;
+    TextView userPhone;
+
+    GridView grid;
+
+    //id of the dogs
+    String[] dogId;
+
+    //image per dog
+    int[] posId;
+
+    ParseObject dogs = new ParseObject("Dog");
+    String objectId = dogs.getObjectId();
+
+//    String[] web = {
+//            "Google",
+//            "Github",
+//            "Instagram",
+//            "Facebook",
+//            "Flickr",
+//            "Pinterest",
+//            "Quora",
+//            "Twitter",
+//            "Vimeo",
+//            "WordPress",
+//            "Youtube",
+//            "Stumbleupon",
+//            "SoundCloud",
+//            "Reddit",
+//            "Blogger"
+//
+//    } ;
+//    int[] imageId = {
+//            R.drawable.dog1,
+//            R.drawable.dog2,
+//            R.drawable.dog3,
+//            R.drawable.dog4,
+//            R.drawable.dog2,
+//            R.drawable.dog3,
+//            R.drawable.dog1,
+//            R.drawable.dog4,
+//            R.drawable.dog3,
+//            R.drawable.dog2,
+//            R.drawable.dog4,
+//            R.drawable.dog1,
+//            R.drawable.dog1,
+//            R.drawable.dog3,
+//            R.drawable.dog4
+//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_us);
+
+        userName = (TextView) findViewById(R.id.userName);
+        userEmail = (TextView) findViewById(R.id.emailText);
+        userPhone = (TextView) findViewById(R.id.phone);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -71,20 +90,64 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
-
-        CustomGrid adapter = new CustomGrid(UserActivity.this, web, imageId);
-        grid=(GridView)findViewById(R.id.grid);
-        grid.setAdapter(adapter);
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(UserActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
-
-
-            }
-        });
-
+//        //Retrieving data from the Dog
+//        ParseQuery query = new ParseQuery("Dog");
+//        query.selectKeys(Arrays.asList("objectId"));
+//        {
+//            try {
+//                List<ParseObject> test = query.find();
+//                dogId = new String[test.size()];
+//                posId = new int[test.size()];
+//                for (int i = 0; i < test.size(); i++) {
+//                    dogId[i] = test.get(i).getObjectId();
+//                    posId[i] = i;
+//                    //String[] str = {test.get(x).getString(uname)};
+//                    //text.setText("Username: "+str[x]+"\n");
+//                }
+//            } catch (com.parse.ParseException e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            }
+//        }
+//
+//
+//        CustomGrid adapter = new CustomGrid(UserActivity.this, dogId, posId);
+//        grid = (GridView) findViewById(R.id.grid);
+//        grid.setAdapter(adapter);
+//        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Toast.makeText(UserActivity.this, "You Clicked at " + dogId[+position], Toast.LENGTH_SHORT).show();
+//
+//
+//            }
+//        });
+//
+//
+//        //the intent info from FindDogActivity
+//        String data = getIntent().getExtras().getString("Name");
+//
+//        // Locate the class table named "Dog" in Parse.com
+//        ParseQuery<ParseObject> query2 = ParseQuery.getQuery("User");
+//
+//        // Locate the objectId from the class
+//        query2.getInBackground(data,new GetCallback<ParseObject>() {
+//            public void done(ParseObject object, ParseException e) {
+//
+//                // TODO Auto-generated method stub
+//                // Locate the column named "ImageDog" and set the string
+//
+//                String name = object.getString("Name");
+//                String email = object.getString("username");
+//                String phone = object.getString("Phone");
+//
+//                userName.setText(name);
+//                userEmail.setText(email);
+//                userPhone.setText(phone);
+//            }
+//        });
+//    }
     }
 
     @Override

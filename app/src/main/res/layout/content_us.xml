@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="81dp"
         android:text="שם + משפחה"
         android:textSize="26sp"
         android:textStyle="bold"
