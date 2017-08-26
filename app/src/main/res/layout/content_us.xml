@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_dark"
-    tools:context="com.example.anna_rgmv.adoptapet.UserActivity">
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             android:background="@android:color/holo_orange_dark"
+                                             tools:context="com.example.anna_rgmv.adoptapet.UserActivity">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -54,20 +54,21 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="84dp"
         android:text="שם + משפחה"
         android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"/>
 
     <TextView
         android:id="@+id/emailText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="28dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginRight="27dp"
+        android:layout_marginTop="18dp"
         android:inputType="textEmailSubject"
         android:text="exemple@gmail.com"
         android:textSize="18sp"
@@ -79,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="27dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="17dp"
         android:inputType="phone"
         android:text="TextView"
         android:textSize="18sp"

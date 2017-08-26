@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?android:attr/colorActivatedHighlight"
-    tools:context="com.example.anna_rgmv.adoptapet.DogActivity">
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             android:background="?android:attr/colorActivatedHighlight"
+                                             tools:context="com.example.anna_rgmv.adoptapet.DogActivity">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoDog"
         app:srcCompat="@drawable/iconhomedog" />
@@ -62,8 +62,8 @@
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintRight_toLeftOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/infoDog"
         app:srcCompat="@drawable/icondangerdog" />
@@ -72,8 +72,8 @@
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintRight_toLeftOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/infoDog"
         app:srcCompat="@drawable/iconhipodog" />
@@ -82,8 +82,8 @@
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintRight_toLeftOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/infoDog"
         app:srcCompat="@drawable/iconhomedog" />
@@ -92,8 +92,8 @@
         android:id="@+id/imageView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintRight_toLeftOf="@+id/imageView5"
         app:layout_constraintTop_toBottomOf="@+id/infoDog"
         app:srcCompat="@drawable/iconkidsdog" />
@@ -102,8 +102,8 @@
         android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="6dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginRight="-4dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintRight_toLeftOf="@+id/imageView6"
         app:layout_constraintTop_toBottomOf="@+id/infoDog"
         app:srcCompat="@drawable/icontrainingdog" />
@@ -113,7 +113,7 @@
         android:layout_width="160dp"
         android:layout_height="47dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="64dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/dogName"
@@ -125,7 +125,7 @@
         android:layout_width="160dp"
         android:layout_height="140dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:gravity="top|right"
         android:inputType="textMultiLine"
@@ -137,7 +137,7 @@
         android:layout_width="167dp"
         android:layout_height="146dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="63dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/dog1" />
@@ -147,7 +147,7 @@
         android:layout_width="55dp"
         android:layout_height="45dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="9dp"
         android:adjustViewBounds="false"
         android:contentDescription="wishlist"
         android:cropToPadding="false"

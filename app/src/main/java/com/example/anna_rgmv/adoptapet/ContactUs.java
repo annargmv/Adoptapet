@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.parse.ParseUser;
 
@@ -14,30 +17,36 @@ public class ContactUs extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //onBackPressed();
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater=getMenuInflater();
+        menuInflater.inflate(R.menu.menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
+
+
         Intent intent;
         switch (item.getItemId()){
-//            case R.id.toolbar:
-//                Intent detailsIntent = new Intent(this, InfoActivity.class);
-//
-//// Use TaskStackBuilder to build the back stack and get the PendingIntent
-//                PendingIntent pendingIntent =
-//                        TaskStackBuilder.create(this)
-//                                // add all of DetailsActivity's parents to the stack,
-//                                // followed by DetailsActivity itself
-//                                .addNextIntentWithParentStack(detailsIntent)
-//                                .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-
             case R.id.menuUser:
                 intent=new Intent(getApplicationContext(),UserActivity.class);
                 startActivity(intent);
@@ -64,5 +73,6 @@ public class ContactUs extends AppCompatActivity {
 
         }
     }
+
 
 }

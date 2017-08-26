@@ -3,6 +3,7 @@ package com.example.anna_rgmv.adoptapet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -63,11 +64,24 @@ public class DogActivity extends AppCompatActivity {
             R.drawable.dog4
     };
 
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dog);
+        setContentView(R.layout.activity_dg);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
 
         CustomGrid adapter = new CustomGrid(DogActivity.this, web, imageId);
@@ -150,7 +164,7 @@ public class DogActivity extends AppCompatActivity {
         }
     }
     public void isWishlist(){
-        
-        
+
+
     }
 }

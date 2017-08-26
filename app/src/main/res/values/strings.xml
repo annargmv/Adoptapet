@@ -58,6 +58,11 @@
         <item>זכר</item>
         <item>נקבה</item>
     </string-array>
+    <string name="title_activity_fd_acivity">Find a dog</string>
+    <string name="title_activity_inf_activiy">Information</string>
+    <string name="title_activity_sn">Sign Up</string>
+    <string name="title_activity_us">User Information</string>
+    <string name="title_activity_dg">Dog Information</string>
 
 
 </resources>

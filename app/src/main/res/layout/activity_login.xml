@@ -5,6 +5,7 @@
                                              android:layout_height="match_parent"
                                              android:gravity="center"
                                              android:orientation="vertical"
+                                             android:background="@android:color/holo_orange_light"
                                              tools:context="com.example.anna_rgmv.adoptapet.LoginActivity"
                                              android:weightSum="1">
 

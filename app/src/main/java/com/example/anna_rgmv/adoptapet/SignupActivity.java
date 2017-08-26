@@ -3,6 +3,7 @@ package com.example.anna_rgmv.adoptapet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -33,7 +34,7 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_sn);
 
         buttonSubmit=(Button)findViewById(R.id.submitButton);
         etMail=(EditText)findViewById(R.id.emailEditText);
@@ -41,7 +42,22 @@ public class SignupActivity extends AppCompatActivity {
         etPassword=(EditText)findViewById(R.id.passwordEditText);
         etName=(EditText)findViewById(R.id.nameEditText);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
+
+
 
     public void tryToSubmit(View view){
         //Pattern email and password
@@ -117,6 +133,5 @@ public class SignupActivity extends AppCompatActivity {
         }
 
     }
-
 
 }
