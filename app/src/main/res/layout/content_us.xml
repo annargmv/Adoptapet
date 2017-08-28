@@ -40,7 +40,7 @@
         android:layout_marginBottom="7dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:text="Wishlist"
+        android:text="@string/wishlist"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -54,37 +54,41 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="81dp"
-        android:text="שם + משפחה"
+        android:layout_marginTop="71dp"
+        android:text="@string/userName"
         android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"/>
+        app:layout_constraintHorizontal_bias="0.555"/>
 
     <TextView
         android:id="@+id/emailText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="27dp"
+        android:layout_width="332dp"
+        android:layout_height="33dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="18dp"
-        android:inputType="textEmailSubject"
-        android:text="exemple@gmail.com"
+        android:text="@string/emailText"
+        android:textAlignment="viewStart"
         android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userName" />
+        app:layout_constraintTop_toBottomOf="@+id/userName"/>
 
     <TextView
-        android:id="@+id/phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="27dp"
-        android:layout_marginTop="17dp"
-        android:inputType="phone"
-        android:text="TextView"
+        android:id="@+id/phoneUser"
+        android:layout_width="332dp"
+        android:layout_height="33dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="18dp"
+        android:text="@string/phoneUser"
+        android:textAlignment="viewStart"
         android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailText" />
+        app:layout_constraintTop_toBottomOf="@+id/emailText"/>
 
 </android.support.constraint.ConstraintLayout>

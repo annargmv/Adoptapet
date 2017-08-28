@@ -40,7 +40,7 @@ public class DogActivity extends AppCompatActivity {
     //Bitmap image =  dogImage.getDrawingCache();
 
     GridView grid;
-
+    CustomGrid adapter;
     String[] dogId;
 
     int[] posId;
@@ -125,7 +125,7 @@ public class DogActivity extends AppCompatActivity {
             }
         });
 
-        CustomGrid adapter = new CustomGrid(DogActivity.this, dogId, posId);
+        adapter = new CustomGrid(DogActivity.this, dogId, posId);
         grid=(GridView)findViewById(R.id.grid);
 
 
@@ -233,6 +233,16 @@ public class DogActivity extends AppCompatActivity {
         }
     }
     public void isWishlist(){
+
+        wishList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+
+            }
+        });
 
 
     }

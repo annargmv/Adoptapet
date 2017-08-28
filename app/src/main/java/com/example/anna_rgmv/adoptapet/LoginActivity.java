@@ -26,11 +26,16 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     EditText emialText;
     EditText password;
     ImageView logo;
+    //CheckBox loginCheckBox;
 
     public void logIn(View view) {
         mEmailLogInButton = (Button) findViewById(R.id.email_login_button);
 
+        //Intent buttonIntent = new Intent(this, FindDogActivity.class);
+        //startActivity(buttonIntent);
+
         if (emialText.getText().length() != 0 && password.getText().length() != 0) {
+
             try {
 
                 ParseUser user = ParseUser.logIn(emialText.getText().toString(), password.getText().toString());
@@ -94,6 +99,8 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         logo = (ImageView) findViewById(R.id.logo);
         emialText = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
+        //loginCheckBox = (CheckBox) findViewById(R.id.checkBox);
+
 //        mEmailLogInButton = (Button) findViewById(R.id.email_login_button);
 
         //mEmailLogInButton.setOnClickListener(new OnClickListener() {

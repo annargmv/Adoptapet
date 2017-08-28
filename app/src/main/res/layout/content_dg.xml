@@ -151,7 +151,7 @@
         android:id="@+id/wishlist"
         android:layout_width="55dp"
         android:layout_height="45dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="9dp"
         android:adjustViewBounds="false"
         android:contentDescription="wishlist"
