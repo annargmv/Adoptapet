@@ -56,8 +56,8 @@ public class DogActivity extends AppCompatActivity {
         {
             try{
                 List<ParseObject> test = query.find();
-                dogId=new String[test.size()];
-                posId =new int[test.size()];
+                dogId=new String[6];
+                posId =new int[6];
                 for(int i=0;i<test.size();i++){
                     dogId[i]=test.get(i).getObjectId();
                     posId[i]=i;
