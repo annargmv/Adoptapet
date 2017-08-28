@@ -30,15 +30,12 @@ public class FindDogActivity extends AppCompatActivity {
     Spinner typeSpinner;
     Spinner genderSpinner;
     GridView grid;
-
-
     //array for the adapters
     ArrayList<String> typeArray = new ArrayList<String>();
     ArrayList<String> genderArray = new ArrayList<String>();
-
     //id of the dogs
     String[] dogId;
-
+    String currentUser;
     //image per dog
     int[] posId;
 

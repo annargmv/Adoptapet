@@ -1,6 +1,8 @@
 package com.example.anna_rgmv.adoptapet;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -16,7 +18,6 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
@@ -24,71 +25,30 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
 import java.util.Arrays;
 import java.util.List;
 
 public class DogActivity extends AppCompatActivity {
 
     ImageView dogImage;
-    ImageView wishList;
-
+    ImageView imageWishList;
     TextView dogName;
     TextView dogInfo;
-
-
-    //Bitmap image =  dogImage.getDrawingCache();
-
     GridView grid;
-
     String[] dogId;
-
+    String currentUser;
+    String data;
     int[] posId;
-
-//    String[] web = {
-//            "Google",
-//            "Github",
-//            "Instagram",
-//            "Facebook",
-//            "Flickr",
-//            "Pinterest",
-//            "Quora",
-//            "Twitter",
-//            "Vimeo",
-//            "WordPress",
-//            "Youtube",
-//            "Stumbleupon",
-//            "SoundCloud",
-//            "Reddit",
-//            "Blogger"
-//
-//    } ;
-
-//    int[] imageId = {
-//            R.drawable.dog1,
-//            R.drawable.dog2,
-//            R.drawable.dog3,
-//            R.drawable.dog4,
-//            R.drawable.dog2,
-//            R.drawable.dog3,
-//            R.drawable.dog1,
-//            R.drawable.dog4,
-//            R.drawable.dog3,
-//            R.drawable.dog2,
-//            R.drawable.dog4,
-//            R.drawable.dog1,
-//            R.drawable.dog1,
-//            R.drawable.dog3,
-//            R.drawable.dog4
-//    };
-
-
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dg);
 
+        currentUser=ParseUser.getCurrentUser().getObjectId();
+        //for open the data base
+        db=this.openOrCreateDatabase("AdoptAPat",MODE_PRIVATE,null);
         ///////////////////////Retrieving dogs id from parse//////////////////////////
         ParseQuery query = new ParseQuery("Dog");
         query.selectKeys(Arrays.asList("objectId"));
@@ -100,23 +60,18 @@ public class DogActivity extends AppCompatActivity {
                 for(int i=0;i<test.size();i++){
                     dogId[i]=test.get(i).getObjectId();
                     posId[i]=i;
-                    //String[] str = {test.get(x).getString(uname)};
-                    //text.setText("Username: "+str[x]+"\n");
                 }
             }
             catch (com.parse.ParseException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,27 +82,23 @@ public class DogActivity extends AppCompatActivity {
 
         CustomGrid adapter = new CustomGrid(DogActivity.this, dogId, posId);
         grid=(GridView)findViewById(R.id.grid);
-
+        //the intent info from FindDogActivity
+        data = getIntent().getExtras().getString("dogId");
 
         dogImage = (ImageView) findViewById(R.id.dogImage);
-        wishList = (ImageView) findViewById(R.id.wishlist);
+        imageWishList = (ImageView) findViewById(R.id.wishlist);
+        if(isInWishlist()) imageWishList.setImageResource(R.drawable.iconwishlist2);
+
         dogName = (TextView) findViewById(R.id.dogName);
         dogInfo = (TextView) findViewById(R.id.infoDog);
-
-        //the intent info from FindDogActivity
-        String data = getIntent().getExtras().getString("dogId");
 
         // Locate the class table named "Dog" in Parse.com
         ParseQuery<ParseObject> query2=ParseQuery.getQuery("Dog");
 
         // Locate the objectId from the class
         query2.getInBackground(data, new GetCallback<ParseObject>() {
-
             public void done(ParseObject object,ParseException e) {
-
-                // TODO Auto-generated method stub
                 // Locate the column named "ImageDog" and set the string
-
                 ParseFile fileObject = (ParseFile) object.get("ImageDog");
 
                 String name=object.getString("dogName");
@@ -161,22 +112,18 @@ public class DogActivity extends AppCompatActivity {
                     public void done(byte[] data,
                                      ParseException e) {
                         if (e == null) {
-                            Log.d("test",
-                                    "We've got data in data.");
+                            Log.d("test","We've got data in data.");
                             // Decode the Byte[] into Bitmap
                             Bitmap bmp = BitmapFactory.decodeByteArray(data, 0,data.length);
                             // Set the Bitmap into the ImageView
                             dogImage.setImageBitmap(bmp);
-
                         } else {
-                            Log.d("test",
-                                    "There was a problem to download the data.");
+                            Log.d("test","There was a problem to download the data.");
                         }
                     }
                 });
             }
         });
-
 
         grid.setAdapter(adapter);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -190,7 +137,6 @@ public class DogActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     @Override
@@ -215,6 +161,7 @@ public class DogActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.menuLogout:
+                updateParseWishlistTable();
                 ParseUser.logOut();
                 intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
@@ -232,8 +179,29 @@ public class DogActivity extends AppCompatActivity {
 
         }
     }
-    public void isWishlist(){
 
+    private void updateParseWishlistTable() {
+    }
+
+    public void wishlist(View view){
+        Log.i("testing: ","i am in wishList");
+        if(isInWishlist()) {
+            Log.i("testing: ","i am in wishList for take off");
+            //take him off from wishlist
+            imageWishList.setImageResource(R.drawable.iconwishlist1);
+            db.execSQL("DELETE FROM wishlist where userId = '"+currentUser+"' AND dogId='"+data+"'");
+        }else {
+            Log.i("testing: ","i am in wishList for put in");
+            //put him in the wishlist
+            imageWishList.setImageResource(R.drawable.iconwishlist2);
+            db.execSQL("INSERT INTO wishlist (userId, dogId) VALUES ('"+currentUser+"','"+data+"')");
+        }
 
     }
+    //check if the dog is already in wishlist of this user
+    private boolean isInWishlist(){
+        Cursor c =db.rawQuery("SELECT * FROM wishlist WHERE userId ='"+currentUser+"' AND dogId='"+data+"' LIMIT 1 ",null);
+        if(c!=null && c.getCount()>0){ return true;}
+        else{ return false; }
+     }
 }
