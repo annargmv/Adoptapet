@@ -59,12 +59,6 @@ public class DogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dg);
 
-
-
-        //dangerDog = (ImageView) findViewById(R.id.dangerDog);
-
-
-
         dogName = (TextView) findViewById(R.id.dogName);
         dogInfo = (TextView) findViewById(R.id.infoDog);
         dogImage = (ImageView) findViewById(R.id.dogImage);

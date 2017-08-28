@@ -16,12 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class UserActivity extends AppCompatActivity {
 
@@ -47,6 +42,7 @@ public class UserActivity extends AppCompatActivity {
         userName = (TextView) findViewById(R.id.userName);
         userEmail = (TextView) findViewById(R.id.emailText);
         userPhone = (TextView) findViewById(R.id.phoneUser);
+
         db=this.openOrCreateDatabase("AdoptAPat",MODE_PRIVATE,null);
         currentUser=ParseUser.getCurrentUser().getObjectId();
 
