@@ -1,6 +1,8 @@
 package com.example.anna_rgmv.adoptapet;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +19,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,6 +28,8 @@ public class UserActivity extends AppCompatActivity {
     TextView userName;
     TextView userEmail;
     TextView userPhone;
+    SQLiteDatabase db;
+    String currentUser;
 
     GridView grid;
     String[] dogId;
@@ -42,7 +47,8 @@ public class UserActivity extends AppCompatActivity {
         userName = (TextView) findViewById(R.id.userName);
         userEmail = (TextView) findViewById(R.id.emailText);
         userPhone = (TextView) findViewById(R.id.phoneUser);
-
+        db=this.openOrCreateDatabase("AdoptAPat",MODE_PRIVATE,null);
+        currentUser=ParseUser.getCurrentUser().getObjectId();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -59,36 +65,24 @@ public class UserActivity extends AppCompatActivity {
         });
 
         //Retrieving data from the Dog
-        ParseQuery query = new ParseQuery("Dog");
-        query.selectKeys(Arrays.asList("objectId"));
-        {
-            try {
-                List<ParseObject> test = query.find();
-                dogId = new String[test.size()];
-                posId = new int[test.size()];
-                for (int i = 0; i < test.size(); i++) {
-                    dogId[i] = test.get(i).getObjectId();
-                    posId[i] = i;
-                    //String[] str = {test.get(x).getString(uname)};
-                    //text.setText("Username: "+str[x]+"\n");
-                }
-            } catch (com.parse.ParseException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+        Cursor c = db.rawQuery("SELECT dogId FROM wishlist WHERE userId ='"+currentUser+"'",null);
+        c.moveToFirst();
+        dogId = new String[c.getCount()];
+        posId = new int[c.getCount()];
+        for(int i=0;i<c.getCount();i++) {
+            dogId[i]=(c.getString(c.getColumnIndex("dogId")));
+            posId[i] = i;
+            c.moveToNext();
         }
-
+        c.close();
 
         CustomGrid adapter = new CustomGrid(UserActivity.this, dogId, posId);
         grid=(GridView)findViewById(R.id.grid);
         grid.setAdapter(adapter);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(UserActivity.this, "You Clicked at " + dogId[+ position], Toast.LENGTH_SHORT).show();
-
-
             }
         });
 
