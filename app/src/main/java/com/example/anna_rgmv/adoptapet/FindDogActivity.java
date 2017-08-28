@@ -30,58 +30,20 @@ public class FindDogActivity extends AppCompatActivity {
     Spinner typeSpinner;
     Spinner genderSpinner;
     GridView grid;
+
     //array for the adapters
     ArrayList<String> typeArray = new ArrayList<String>();
     ArrayList<String> genderArray = new ArrayList<String>();
+
     //id of the dogs
     String[] dogId;
     String currentUser;
+
     //image per dog
     int[] posId;
 
     ParseObject dogs = new ParseObject("Dog");
     String objectId = dogs.getObjectId();
-
-    //names of the dogs
-//    String[] web = {
-//            "Google",
-//            "Github",
-//            "Instagram",
-//            "Facebook",
-//            "Flickr",
-//            "Pinterest",
-//            "Quora",
-//            "Twitter",
-//            "Vimeo",
-//            "WordPress",
-//            "Youtube",
-//            "Stumbleupon",
-//            "SoundCloud",
-//            "Reddit",
-//            "Blogger"
-//
-//    } ;
-
-
-//    //image per dog
-//    int[] imageId = {
-//
-//            R.drawable.dog1,
-//            R.drawable.dog2,
-//            R.drawable.dog3,
-//            R.drawable.dog4,
-//            R.drawable.dog2,
-//            R.drawable.dog3,
-//            R.drawable.dog1,
-//            R.drawable.dog4,
-//            R.drawable.dog3,
-//            R.drawable.dog2,
-//            R.drawable.dog4,
-//            R.drawable.dog1,
-//            R.drawable.dog1,
-//            R.drawable.dog3,
-//            R.drawable.dog4
-//    };
 
 
     @Override

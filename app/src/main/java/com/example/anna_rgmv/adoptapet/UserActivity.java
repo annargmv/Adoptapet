@@ -78,7 +78,6 @@ public class UserActivity extends AppCompatActivity {
             }
         }
 
-
         CustomGrid adapter = new CustomGrid(UserActivity.this, dogId, posId);
         grid=(GridView)findViewById(R.id.grid);
         grid.setAdapter(adapter);
@@ -87,7 +86,6 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(UserActivity.this, "You Clicked at " + dogId[+ position], Toast.LENGTH_SHORT).show();
-
 
             }
         });
