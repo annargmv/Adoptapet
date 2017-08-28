@@ -151,16 +151,16 @@
         android:id="@+id/wishlist"
         android:layout_width="55dp"
         android:layout_height="45dp"
-        android:layout_marginLeft="25dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="9dp"
         android:adjustViewBounds="false"
         android:contentDescription="wishlist"
         android:cropToPadding="false"
-        android:onClick="isWishlist"
+        android:onClick="wishlist"
         android:scaleType="fitCenter"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dogImage"
-        app:srcCompat="@drawable/iconwishlist1"
-        android:layout_marginStart="16dp"/>
+        app:srcCompat="@drawable/iconwishlist1" />
 
 </android.support.constraint.ConstraintLayout>
