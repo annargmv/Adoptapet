@@ -1,6 +1,7 @@
 package com.example.anna_rgmv.adoptapet;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.parse.GetCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -38,21 +40,15 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     public void logIn(View view) {
         mEmailLogInButton = (Button) findViewById(R.id.email_login_button);
 
-        Intent buttonIntent = new Intent(this, FindDogActivity.class);
-        startActivity(buttonIntent);
-
-
-
         if (emialText.getText().length() != 0 && password.getText().length() != 0) {
             try {
 
                 ParseUser user = ParseUser.logIn(emialText.getText().toString(), password.getText().toString());
-
+                System.out.println("info for the user is " + user);
                 currentUser=ParseUser.getCurrentUser().getObjectId();
                 sqliteUpdate();
-
-                //Intent buttonIntent = new Intent(this, FindDogActivity.class);
-                //startActivity(buttonIntent);
+                Intent buttonIntent = new Intent(this, FindDogActivity.class);
+                startActivity(buttonIntent);
 
             } catch (ParseException e) {
                 Toast.makeText(LoginActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();

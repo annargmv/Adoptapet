@@ -51,79 +51,64 @@
         android:layout_marginEnd="8dp"/>
 
     <ImageView
-        android:id="@+id/homeDog"
+        android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="94dp"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="34dp"
-        android:visibility="invisible"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoDog"
-        app:srcCompat="@drawable/iconhomedog"/>
+        app:srcCompat="@drawable/iconhomedog"
+        android:layout_marginEnd="16dp"/>
 
     <ImageView
-        android:id="@+id/dangerDog"
+        android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="34dp"
-        android:visibility="invisible"
-        app:layout_constraintRight_toLeftOf="@+id/homeDog"
+        app:layout_constraintRight_toLeftOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/infoDog"
-        app:srcCompat="@drawable/icondangerdog"/>
+        app:srcCompat="@drawable/icondangerdog" />
 
     <ImageView
-        android:id="@+id/hipoDog"
+        android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="7dp"
         android:layout_marginTop="34dp"
-        android:visibility="invisible"
-        app:layout_constraintRight_toLeftOf="@+id/dangerDog"
+        app:layout_constraintRight_toLeftOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/infoDog"
-        app:srcCompat="@drawable/iconhipodog"/>
+        app:srcCompat="@drawable/iconhipodog" />
 
     <ImageView
-        android:id="@+id/kidsDog"
+        android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="19dp"
         android:layout_marginTop="34dp"
-        android:visibility="invisible"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/hipoDog"
+        app:layout_constraintRight_toLeftOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/infoDog"
-        app:srcCompat="@drawable/iconkidsdog"/>
+        app:srcCompat="@drawable/iconhomedog"
+        android:layout_marginEnd="19dp"/>
 
     <ImageView
-        android:id="@+id/trainedDog"
+        android:id="@+id/imageView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="0dp"
+        android:layout_marginRight="18dp"
         android:layout_marginTop="34dp"
-        android:visibility="invisible"
-        app:layout_constraintHorizontal_bias="0.948"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/kidsDog"
+        app:layout_constraintRight_toLeftOf="@+id/imageView5"
         app:layout_constraintTop_toBottomOf="@+id/infoDog"
-        app:srcCompat="@drawable/icontrainingdog"/>
+        app:srcCompat="@drawable/iconkidsdog"
+        android:layout_marginEnd="18dp"/>
 
     <ImageView
-        android:id="@+id/gardDog"
+        android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="9dp"
         android:layout_marginTop="34dp"
-        android:visibility="invisible"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/trainedDog"
+        app:layout_constraintRight_toLeftOf="@+id/imageView6"
         app:layout_constraintTop_toBottomOf="@+id/infoDog"
-        app:srcCompat="@drawable/iconguarddog"/>
+        app:srcCompat="@drawable/icontrainingdog" />
 
     <TextView
         android:id="@+id/dogName"
@@ -166,8 +151,7 @@
         android:id="@+id/wishlist"
         android:layout_width="55dp"
         android:layout_height="45dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="9dp"
         android:adjustViewBounds="false"
         android:contentDescription="wishlist"
