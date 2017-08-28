@@ -35,6 +35,7 @@ public class DogActivity extends AppCompatActivity {
     TextView dogName;
     TextView dogInfo;
     GridView grid;
+    CustomGrid adapter;
     String[] dogId;
     String currentUser;
     String data;
@@ -80,7 +81,7 @@ public class DogActivity extends AppCompatActivity {
             }
         });
 
-        CustomGrid adapter = new CustomGrid(DogActivity.this, dogId, posId);
+        adapter = new CustomGrid(DogActivity.this, dogId, posId);
         grid=(GridView)findViewById(R.id.grid);
         //the intent info from FindDogActivity
         data = getIntent().getExtras().getString("dogId");

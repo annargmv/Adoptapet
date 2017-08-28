@@ -14,7 +14,6 @@
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="contact_us_title">יצירת קשר</string>
-    <string name="title_activity_contact_us">יצירת קשר</string>
     <string name="phone">Phone Number:</string>
     <string name="address">Address</string>
     <string name="email">Email</string>
@@ -49,6 +48,10 @@
     <string name="parse_server_url">YOUR_SERVER_URL</string>
     <string name="parse_app_id">YOUR_APPLICATION_ID</string>
     <string name="about">אודות</string>
+    <string name="userName">שם + שם משפחה</string>
+    <string name="emailText">exemple@gmail.com</string>
+    <string name="phoneUser">Phone</string>
+    <string name="wishlist">Wish List</string>
     <string name="aboutText">עמותת הרצליה אוהבת חיות הוקמה בכדי לשפר את מצב בעלי החיים בהרצליה והשרון</string>
     <string-array name="type">
         <item>מעורב</item>
@@ -63,6 +66,7 @@
     <string name="title_activity_sn">Sign Up</string>
     <string name="title_activity_us">User Information</string>
     <string name="title_activity_dg">Dog Information</string>
+    <string name="title_activity_contact_us">Contact Us</string>
 
 
 </resources>

@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
@@ -26,10 +25,10 @@ public class CustomGrid extends BaseAdapter{
     private final int[] Imageid;
 
 
-    public CustomGrid(Context c,String[] name,int[] Imageid ) {
+    public CustomGrid(Context c,String[] name_other,int[] Imageid ) {
         mContext = c;
         this.Imageid = Imageid;
-        this.name = name;
+        name = name_other;
     }
 
     @Override
@@ -77,7 +76,7 @@ public class CustomGrid extends BaseAdapter{
                     //Log.i("testing: ",object.toString());
                     //
                     ParseFile fileObject = (ParseFile) object.get("ImageDog");
-                    String dogName=object.getString("dogName");
+                    String dogName = object.getString("dogName");
                     textView.setText(dogName);
                     fileObject.getDataInBackground(new GetDataCallback() {
                         public void done(byte[] data,

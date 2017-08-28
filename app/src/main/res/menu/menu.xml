@@ -4,15 +4,15 @@
 
 
     <item android:title="User"
-        android:id="@+id/menuUser"/>
+          android:id="@+id/menuUser"/>
     <item android:title="Find a dog"
-        android:id="@+id/menuFind"/>
+          android:id="@+id/menuFind"/>
     <item android:title="Information"
-        android:id="@+id/menuInfo"/>
+          android:id="@+id/menuInfo"/>
     <item android:title="Contact Us"
           android:id="@+id/contactUs"/>
     <item android:title="Log-out"
-        android:id="@+id/menuLogout"/>
+          android:id="@+id/menuLogout"/>
 
 
 </menu>
