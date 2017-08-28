@@ -153,7 +153,7 @@ public class DogActivity extends AppCompatActivity {
                     homeDog.setVisibility(View.VISIBLE);
                 }
                 if (trainigDog){
-                    trainedDog = (ImageView) findViewById(R.id.trainedDog);
+                    trainedDog = (ImageView) findViewById(R.id.trinedDog);
                     Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.icontrainingdog);
                     trainedDog.setImageBitmap(bm);
                     trainedDog.setVisibility(View.VISIBLE);
