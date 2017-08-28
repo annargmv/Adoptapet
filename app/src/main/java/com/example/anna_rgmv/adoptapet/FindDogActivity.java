@@ -14,11 +14,9 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,48 +40,6 @@ public class FindDogActivity extends AppCompatActivity {
     ParseObject dogs = new ParseObject("Dog");
     String objectId = dogs.getObjectId();
 
-    //names of the dogs
-//    String[] web = {
-//            "Google",
-//            "Github",
-//            "Instagram",
-//            "Facebook",
-//            "Flickr",
-//            "Pinterest",
-//            "Quora",
-//            "Twitter",
-//            "Vimeo",
-//            "WordPress",
-//            "Youtube",
-//            "Stumbleupon",
-//            "SoundCloud",
-//            "Reddit",
-//            "Blogger"
-//
-//    } ;
-
-
-//    //image per dog
-//    int[] imageId = {
-//
-//            R.drawable.dog1,
-//            R.drawable.dog2,
-//            R.drawable.dog3,
-//            R.drawable.dog4,
-//            R.drawable.dog2,
-//            R.drawable.dog3,
-//            R.drawable.dog1,
-//            R.drawable.dog4,
-//            R.drawable.dog3,
-//            R.drawable.dog2,
-//            R.drawable.dog4,
-//            R.drawable.dog1,
-//            R.drawable.dog1,
-//            R.drawable.dog3,
-//            R.drawable.dog4
-//    };
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,12 +56,9 @@ public class FindDogActivity extends AppCompatActivity {
                 for(int i=0;i<test.size();i++){
                     dogId[i]=test.get(i).getObjectId();
                     posId[i]=i;
-                    //String[] str = {test.get(x).getString(uname)};
-                    //text.setText("Username: "+str[x]+"\n");
                 }
             }
             catch (com.parse.ParseException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -123,7 +76,6 @@ public class FindDogActivity extends AppCompatActivity {
             }
         });
 
-
         CustomGrid adapter = new CustomGrid(FindDogActivity.this, dogId, posId);
         grid=(GridView)findViewById(R.id.grid);
         grid.setAdapter(adapter);
@@ -136,7 +88,6 @@ public class FindDogActivity extends AppCompatActivity {
                 Intent intent = new Intent(FindDogActivity.this, DogActivity.class);
                 intent.putExtra("dogId",dogId[position]);
                 startActivity(intent);
-
             }
         });
 
@@ -161,11 +112,6 @@ public class FindDogActivity extends AppCompatActivity {
         genderSpinner.setAdapter(spinerGenderAdapter);
 
     }
-
-
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -202,8 +148,6 @@ public class FindDogActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             default: return false;
-
-
         }
     }
 
