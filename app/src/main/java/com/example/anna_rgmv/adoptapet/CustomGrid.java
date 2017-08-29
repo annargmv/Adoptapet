@@ -33,25 +33,21 @@ public class CustomGrid extends BaseAdapter{
 
     @Override
     public int getCount() {
-        // TODO Auto-generated method stub
         return name.length;
     }
 
     @Override
     public Object getItem(int position) {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public long getItemId(int position) {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
         View grid;
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -70,7 +66,6 @@ public class CustomGrid extends BaseAdapter{
             // Locate the objectId from the class
             query.getInBackground(name[position], new GetCallback<ParseObject>() {
                 public void done(ParseObject object,ParseException e) {
-                    // TODO Auto-generated method stub
                     // Locate the column named "ImageDog" and set the string
                     //for testing only
                     //Log.i("testing: ",object.toString());
@@ -98,7 +93,6 @@ public class CustomGrid extends BaseAdapter{
                         });
                     }}
             });
-
         } else {
             grid = (View) convertView;
         }
