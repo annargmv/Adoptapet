@@ -18,6 +18,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
@@ -25,6 +26,7 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,12 +36,22 @@ public class DogActivity extends AppCompatActivity {
     ImageView imageWishList;
     TextView dogName;
     TextView dogInfo;
+
+    //dog's info
+    ImageView trainedDog;
+    ImageView kidsDog;
+    ImageView dangerDog;
+    ImageView hipoDog;
+    ImageView homeDog;
+    ImageView gardDog;
+
     GridView grid;
-    CustomGrid adapter;
+
     String[] dogId;
     String currentUser;
     String data;
     int[] posId;
+
     SQLiteDatabase db;
 
     @Override
@@ -47,9 +59,16 @@ public class DogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dg);
 
+        dogName = (TextView) findViewById(R.id.dogName);
+        dogInfo = (TextView) findViewById(R.id.infoDog);
+        dogImage = (ImageView) findViewById(R.id.dogImage);
+        imageWishList = (ImageView) findViewById(R.id.wishlist);
+
+
         currentUser=ParseUser.getCurrentUser().getObjectId();
         //for open the data base
         db=this.openOrCreateDatabase("AdoptAPat",MODE_PRIVATE,null);
+
         ///////////////////////Retrieving dogs id from parse//////////////////////////
         ParseQuery query = new ParseQuery("Dog");
         query.selectKeys(Arrays.asList("objectId"));
@@ -81,17 +100,16 @@ public class DogActivity extends AppCompatActivity {
             }
         });
 
-        adapter = new CustomGrid(DogActivity.this, dogId, posId);
+        CustomGrid adapter = new CustomGrid(DogActivity.this, dogId, posId);
         grid=(GridView)findViewById(R.id.grid);
         //the intent info from FindDogActivity
         data = getIntent().getExtras().getString("dogId");
 
-        dogImage = (ImageView) findViewById(R.id.dogImage);
-        imageWishList = (ImageView) findViewById(R.id.wishlist);
-        if(isInWishlist()) imageWishList.setImageResource(R.drawable.iconwishlist2);
 
-        dogName = (TextView) findViewById(R.id.dogName);
-        dogInfo = (TextView) findViewById(R.id.infoDog);
+        if(isInWishlist())
+            imageWishList.setImageResource(R.drawable.iconwishlist2);
+
+
 
         // Locate the class table named "Dog" in Parse.com
         ParseQuery<ParseObject> query2=ParseQuery.getQuery("Dog");
@@ -105,8 +123,59 @@ public class DogActivity extends AppCompatActivity {
                 String name=object.getString("dogName");
                 String info=object.getString("notes");
 
+                //get the data of the doegs infro about there's behaviour 
+                boolean kids = object.getBoolean("isKidsDog");
+                boolean dangerDod = object.getBoolean("isDangerDog");
+                boolean homeDog1 = object.getBoolean("isHomeDog");
+                boolean trainigDog = object.getBoolean("isTrainingDog");
+                boolean guardingDog = object.getBoolean("isGardDog");
+                boolean hipoDog1 = object.getBoolean("isHipoDog");
+
+
+
+                if(kids){
+                    kidsDog = (ImageView) findViewById(R.id.kidsDog);
+                    Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.iconkidsdog);
+                    kidsDog.setImageBitmap(bm);
+                    kidsDog.setVisibility(View.VISIBLE);
+                }
+
+                if(dangerDod){
+                    dangerDog = (ImageView) findViewById(R.id.dangerDog);
+                    Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.icondangerdog);
+                    dangerDog.setImageBitmap(bm);
+                    dangerDog.setVisibility(View.VISIBLE);
+                }
+                if(homeDog1){
+                    homeDog = (ImageView) findViewById(R.id.homeDog);
+                    Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.iconhomedog);
+                    homeDog.setImageBitmap(bm);
+                    homeDog.setVisibility(View.VISIBLE);
+                }
+                if (trainigDog){
+                    trainedDog = (ImageView) findViewById(R.id.trinedDog);
+                    Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.icontrainingdog);
+                    trainedDog.setImageBitmap(bm);
+                    trainedDog.setVisibility(View.VISIBLE);
+                }
+                if(guardingDog){
+                    gardDog = (ImageView) findViewById(R.id.gardDog);
+                    Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.iconguarddog);
+                    gardDog.setImageBitmap(bm);
+                    gardDog.setVisibility(View.VISIBLE);
+                }
+                if (hipoDog1){
+                    hipoDog = (ImageView) findViewById(R.id.hipoDog);
+                    Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.iconguarddog);
+                    hipoDog.setImageBitmap(bm);
+                    hipoDog.setVisibility(View.VISIBLE);
+
+                }
+
                 dogName.setText(name);
                 dogInfo.setText(info);
+
+
 
                 fileObject.getDataInBackground(new GetDataCallback() {
 
