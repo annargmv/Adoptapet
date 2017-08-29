@@ -75,27 +75,28 @@ public class CustomGrid extends BaseAdapter{
                     //for testing only
                     //Log.i("testing: ",object.toString());
                     //
-                    ParseFile fileObject = (ParseFile) object.get("ImageDog");
-                    String dogName = object.getString("dogName");
-                    textView.setText(dogName);
-                    fileObject.getDataInBackground(new GetDataCallback() {
-                        public void done(byte[] data,
-                                         ParseException e) {
-                            if (e == null) {
-                                Log.d("test",
-                                        "We've got data in data.");
-                                // Decode the Byte[] into Bitmap
-                                Bitmap bmp = BitmapFactory.decodeByteArray(data, 0,data.length);
-                                // Set the Bitmap into the ImageView
-                                imageView.setImageBitmap(bmp);
+                    if(object!=null) {
+                        ParseFile fileObject = (ParseFile) object.get("ImageDog");
+                        String dogName = object.getString("dogName");
+                        textView.setText(dogName);
+                        fileObject.getDataInBackground(new GetDataCallback() {
+                            public void done(byte[] data,
+                                             ParseException e) {
+                                if (e == null) {
+                                    Log.d("test",
+                                            "We've got data in data.");
+                                    // Decode the Byte[] into Bitmap
+                                    Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+                                    // Set the Bitmap into the ImageView
+                                    imageView.setImageBitmap(bmp);
 
-                            } else {
-                                Log.d("test",
-                                        "There was a problem downloading the data.");
+                                } else {
+                                    Log.d("test",
+                                            "There was a problem downloading the data.");
+                                }
                             }
-                        }
-                    });
-                }
+                        });
+                    }}
             });
 
         } else {
