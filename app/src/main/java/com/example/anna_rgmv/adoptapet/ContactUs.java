@@ -1,6 +1,7 @@
 package com.example.anna_rgmv.adoptapet;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -43,8 +44,7 @@ public class ContactUs extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
-
-
+        SQLiteDatabase db=this.openOrCreateDatabase("AdoptAPat",MODE_PRIVATE,null);
         Intent intent;
         switch (item.getItemId()){
             case R.id.menuUser:
@@ -56,6 +56,7 @@ public class ContactUs extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.menuLogout:
+                DogActivity.updateParseWishlistTable(db);
                 ParseUser.logOut();
                 intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);

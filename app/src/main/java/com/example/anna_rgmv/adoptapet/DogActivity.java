@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
@@ -231,7 +232,7 @@ public class DogActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.menuLogout:
-                updateParseWishlistTable();
+                updateParseWishlistTable(db);
                 ParseUser.logOut();
                 intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
@@ -250,7 +251,39 @@ public class DogActivity extends AppCompatActivity {
         }
     }
 
-    private void updateParseWishlistTable() {
+    static void updateParseWishlistTable(SQLiteDatabase db) {
+        String currentUser=ParseUser.getCurrentUser().getObjectId();
+        //first to delete the prev for this user
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Wishlist");
+        query.whereEqualTo("userId", currentUser);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                for (ParseObject object : objects) {
+                    try {
+                        object.delete();
+                        object.saveInBackground();
+                    } catch (ParseException ex) {
+                        ex.printStackTrace();
+                    }
+
+                }
+            }
+        });
+        //now create the new data to Wishlist from SQLITE database
+        //Retrieving data from the Dog
+        Cursor c = db.rawQuery("SELECT dogId FROM wishlist WHERE userId ='"+currentUser+"'",null);
+        ParseObject insertWishlist;
+        c.moveToFirst();
+        for(int i=0;i<c.getCount();i++) {
+            insertWishlist = new ParseObject("Wishlist");
+            insertWishlist.put("userId",currentUser );
+            insertWishlist.put("dogId",c.getString(c.getColumnIndex("dogId")));
+            insertWishlist.saveInBackground();
+            c.moveToNext();
+        }
+        c.close();
+
     }
 
     public void wishlist(View view){

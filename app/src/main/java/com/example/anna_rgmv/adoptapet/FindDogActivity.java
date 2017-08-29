@@ -1,6 +1,8 @@
 package com.example.anna_rgmv.adoptapet;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,6 +16,9 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -28,10 +33,11 @@ public class FindDogActivity extends AppCompatActivity {
     Spinner typeSpinner;
     Spinner genderSpinner;
     GridView grid;
+    SQLiteDatabase db;
 
     //array for the adapters
-    ArrayList<String> typeArray = new ArrayList<String>();
-    ArrayList<String> genderArray = new ArrayList<String>();
+    ArrayList<String> typeArray = new ArrayList<>();
+    ArrayList<String> genderArray = new ArrayList<>();
 
     //id of the dogs
     String[] dogId;
@@ -47,6 +53,7 @@ public class FindDogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fd);
 
+        db=this.openOrCreateDatabase("AdoptAPat",MODE_PRIVATE,null);
         ///////////////////////Retrieving dogs id from parse//////////////////////////
         ParseQuery query = new ParseQuery("Dog");
         query.selectKeys(Arrays.asList("objectId"));
@@ -123,6 +130,7 @@ public class FindDogActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
@@ -137,6 +145,7 @@ public class FindDogActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.menuLogout:
+                DogActivity.updateParseWishlistTable(db);
                 ParseUser.logOut();
                 intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
