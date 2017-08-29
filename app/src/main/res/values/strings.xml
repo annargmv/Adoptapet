@@ -54,10 +54,12 @@
     <string name="wishlist">Wish List</string>
     <string name="aboutText">עמותת הרצליה אוהבת חיות הוקמה בכדי לשפר את מצב בעלי החיים בהרצליה והשרון</string>
     <string-array name="type">
+        <item>סוג</item>
         <item>מעורב</item>
         <item>גזעי</item>
     </string-array>
     <string-array name="gender">
+        <item>מין</item>
         <item>זכר</item>
         <item>נקבה</item>
     </string-array>

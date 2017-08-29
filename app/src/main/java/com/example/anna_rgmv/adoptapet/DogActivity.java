@@ -186,6 +186,7 @@ public class DogActivity extends AppCompatActivity {
                             // Decode the Byte[] into Bitmap
                             Bitmap bmp = BitmapFactory.decodeByteArray(data, 0,data.length);
                             // Set the Bitmap into the ImageView
+                            dogImage.setVisibility(View.VISIBLE);
                             dogImage.setImageBitmap(bmp);
                         } else {
                             Log.d("test","There was a problem to download the data.");

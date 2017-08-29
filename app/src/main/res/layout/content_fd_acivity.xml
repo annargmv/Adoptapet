@@ -59,12 +59,14 @@
         <Spinner
             android:id="@+id/typeSpinner"
             android:layout_width="117dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:visibility="visible"/>
 
         <Spinner
             android:id="@+id/genderSpinner"
             android:layout_width="117dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:visibility="visible"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

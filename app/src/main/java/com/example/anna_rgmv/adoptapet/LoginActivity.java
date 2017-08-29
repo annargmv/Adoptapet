@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     String userId[];
     String dogId[];
     String currentUser;
+
     public void logIn(View view) {
         mEmailLogInButton = (Button) findViewById(R.id.email_login_button);
 
@@ -107,32 +108,14 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         logo = (ImageView) findViewById(R.id.logo);
         emialText = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
-//        mEmailLogInButton = (Button) findViewById(R.id.email_login_button);
 
-        //mEmailLogInButton.setOnClickListener(new OnClickListener() {
-        //            @Override
-        //            public void onClick(View v) {
-        //                Toast.makeText(getApplicationContext(), "Please enter your email and password", Toast.LENGTH_LONG);
-        ////                logIn(findViewById(R.id.email_login_button));
-        //
-        //            }
-        //        });
-
-        //logIn(findViewById(R.id.email_login_button));
-        //signUp(findViewById(R.id.email_sign_up_button));
-
-        //        if(mEmailLogInButton.callOnClick()) {
-        //            logIn(findViewById(R.id.email_login_button));
-        //        }
-        //        else if(mEmailSignUpButton.callOnClick()){
-        //            signUp(findViewById(R.id.email_sign_up_button));
-        //        }
     }
     public void sqliteUpdate(){
         //download from the server
         ParseQuery<ParseObject> query=ParseQuery.getQuery("Wishlist");
         query.whereEqualTo("userId",currentUser);
         query.selectKeys(Arrays.asList("objectId"));
+
         try{
             List<ParseObject> test = query.find();
             dogId=new String[test.size()];
