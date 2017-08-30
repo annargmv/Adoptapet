@@ -154,6 +154,7 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
                 startActivity(intent);
                 return true;
             case R.id.menuLogout:
+                DogActivity.updateParseWishlistTable(db);
                 ParseUser.logOut();
                 intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
@@ -192,7 +193,7 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
             e.printStackTrace();
         }
         //create or open data base
-        SQLiteDatabase db = this.openOrCreateDatabase("AdoptAPet", MODE_PRIVATE, null);
+        db = this.openOrCreateDatabase("AdoptAPet", MODE_PRIVATE, null);
         // db.execSQL("DROP TABLE IF EXISTS wishlist " );
         db.execSQL("CREATE TABLE IF NOT EXISTS dogsForSearch (name VARCHAR ,objectId VARCHAR ,dogType VARCHAR)");
         //db.execSQL("DELETE FROM wishlist where userId = '"+currentUser+"' ");
@@ -246,7 +247,7 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
             e.printStackTrace();
         }
         //create or open data base
-        SQLiteDatabase db = this.openOrCreateDatabase("AdoptAPet", MODE_PRIVATE, null);
+        db = this.openOrCreateDatabase("AdoptAPet", MODE_PRIVATE, null);
         // db.execSQL("DROP TABLE IF EXISTS wishlist " );
         db.execSQL("CREATE TABLE IF NOT EXISTS dogsForSearch (name VARCHAR ,objectId VARCHAR ,isMale VARCHAR)");
         //db.execSQL("DELETE FROM wishlist where userId = '"+currentUser+"' ");
