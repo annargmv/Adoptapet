@@ -76,18 +76,19 @@ public class DogActivity extends AppCompatActivity {
         ParseQuery query = new ParseQuery("Dog");
         query.selectKeys(Arrays.asList("objectId"));
         {
-            try{
+            try {
                 List<ParseObject> test = query.find();
-                dogId=new String[6];
-                posId =new int[6];
-                for(int i=0;i<test.size();i++){
-                    dogId[i]=test.get(i).getObjectId();
-                    posId[i]=i;
+                dogId = new String[6];
+                posId = new int[6];
+                for (int i = 0; i < test.size(); i++) {
+                    dogId[i] = test.get(i).getObjectId();
+                    posId[i] = i;
                 }
-            }
-            catch (com.parse.ParseException e) {
+            } catch (com.parse.ParseException e) {
                 e.printStackTrace();
             }
+
+
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

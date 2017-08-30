@@ -51,7 +51,7 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
     String dogTypeName;
     String dogGender;
 
-    //SQLiteDatabase db;
+    SQLiteDatabase db;
     public void retrieveData(){
 
         ///////////////////////Retrieving dogs id from parse//////////////////////////
