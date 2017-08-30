@@ -51,7 +51,7 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
     String dogTypeName;
     String dogGender;
 
-    //SQLiteDatabase db;
+    SQLiteDatabase db;
     public void retrieveData(){
 
         ///////////////////////Retrieving dogs id from parse//////////////////////////
@@ -80,7 +80,7 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(FindDogActivity.this, "You Clicked at " +dogId[+ position], Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(FindDogActivity.this, "You Clicked at " +dogId[+ position], Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(FindDogActivity.this, DogActivity.class);
                 intent.putExtra("dogId",dogId[position]);
@@ -118,8 +118,7 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(FindDogActivity.this, "You Clicked at " +dogId[+ position], Toast.LENGTH_SHORT).show();
-
+               // Toast.makeText(FindDogActivity.this, "You Clicked at " +dogId[+ position], Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(FindDogActivity.this, DogActivity.class);
                 intent.putExtra("dogId",dogId[position]);
@@ -233,7 +232,7 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(FindDogActivity.this, "You Clicked at " +dogId[+ position], Toast.LENGTH_SHORT).show();
+               // Toast.makeText(FindDogActivity.this, "You Clicked at " +dogId[+ position], Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(FindDogActivity.this, DogActivity.class);
                 intent.putExtra("dogId",dogId[position]);
@@ -287,7 +286,7 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(FindDogActivity.this, "You Clicked at " +dogId[+ position], Toast.LENGTH_SHORT).show();
+                //Toast.makeText(FindDogActivity.this, "You Clicked at " +dogId[+ position], Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(FindDogActivity.this, DogActivity.class);
                 intent.putExtra("dogId",dogId[position]);

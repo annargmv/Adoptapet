@@ -83,7 +83,10 @@ public class UserActivity extends AppCompatActivity {
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(UserActivity.this, "You Clicked at " + dogId[+ position], Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(UserActivity.this, "You Clicked at " + dogId[+ position], Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(UserActivity.this, DogActivity.class);
+                intent.putExtra("dogId",dogId[position]);
+                startActivity(intent);
             }
         });
 
