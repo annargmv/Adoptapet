@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FindDogActivity extends AppCompatActivity implements OnItemSelectedListener{
+public class FindDogActivity extends AppCompatActivity implements OnItemSelectedListener {
 
     //Initializing variables
     EditText searchByName;
@@ -54,12 +54,11 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
     SQLiteDatabase db;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fd);
-
-
 
         ///////////////////////Retrieving dogs id from parse//////////////////////////
         ParseQuery query = new ParseQuery("Dog");
@@ -109,10 +108,7 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
 
         searchByName = (EditText) findViewById(R.id.searchByname);
         typeSpinner = (Spinner)findViewById(R.id.typeSpinner);
-        typeSpinner.setOnItemSelectedListener(this);
-
         genderSpinner = (Spinner) findViewById(R.id.genderSpinner);
-        genderSpinner.setOnItemSelectedListener(this);
 
         //Type Spinner
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -129,7 +125,6 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
         spinerGenderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         genderSpinner.setAdapter(spinerGenderAdapter);
-
 
     }
 
