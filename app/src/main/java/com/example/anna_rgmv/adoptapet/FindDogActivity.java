@@ -108,7 +108,10 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
 
         searchByName = (EditText) findViewById(R.id.searchByname);
         typeSpinner = (Spinner)findViewById(R.id.typeSpinner);
+        typeSpinner.setOnItemSelectedListener(this);
+
         genderSpinner = (Spinner) findViewById(R.id.genderSpinner);
+        genderSpinner.setOnItemSelectedListener(this);
 
         //Type Spinner
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -125,6 +128,7 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
         spinerGenderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         genderSpinner.setAdapter(spinerGenderAdapter);
+
 
     }
 
@@ -267,9 +271,6 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
                 startActivity(intent);
             }
         });
-
-
-
     }
 
 
