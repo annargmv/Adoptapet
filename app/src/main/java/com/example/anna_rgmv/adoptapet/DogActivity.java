@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -62,6 +63,7 @@ public class DogActivity extends AppCompatActivity {
 
         dogName = (TextView) findViewById(R.id.dogName);
         dogInfo = (TextView) findViewById(R.id.infoDog);
+        dogInfo.setMovementMethod(new ScrollingMovementMethod());
         dogImage = (ImageView) findViewById(R.id.dogImage);
         imageWishList = (ImageView) findViewById(R.id.wishlist);
 

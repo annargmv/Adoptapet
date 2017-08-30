@@ -144,6 +144,7 @@
         android:layout_height="140dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="10dp"
+        android:scrollbars="vertical"
         android:ems="10"
         android:gravity="top|right"
         android:inputType="textMultiLine"
