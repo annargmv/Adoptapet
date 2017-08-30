@@ -21,7 +21,6 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,8 +33,8 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
     GridView grid;
 
     //array for the adapters
-    ArrayList<String> typeArray = new ArrayList<String>();
-    ArrayList<String> genderArray = new ArrayList<String>();
+    //ArrayList<String> typeArray = new ArrayList<String>();
+    //ArrayList<String> genderArray = new ArrayList<String>();
 
     //id of the dogs
     String[] dogId;
@@ -44,23 +43,19 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
 
     String[] dogName;
     String[] dogGenderType;
-    String[] dogTypes;
+    //String[] dogTypes;
 
-    String currentUser;
-    String data;
+    //String currentUser;
+    //String data;
+    String itemDogType;
     String dogTypeName;
     String dogGender;
 
-    SQLiteDatabase db;
-
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fd);
+    //SQLiteDatabase db;
+    public void retrieveData(){
 
         ///////////////////////Retrieving dogs id from parse//////////////////////////
+
         ParseQuery query = new ParseQuery("Dog");
         query.selectKeys(Arrays.asList("objectId"));
         {
@@ -77,6 +72,31 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
                 e.printStackTrace();
             }
         }
+
+        CustomGrid adapter = new CustomGrid(FindDogActivity.this, dogId, posId);
+        grid=(GridView)findViewById(R.id.grid);
+        grid.setAdapter(adapter);
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(FindDogActivity.this, "You Clicked at " +dogId[+ position], Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(FindDogActivity.this, DogActivity.class);
+                intent.putExtra("dogId",dogId[position]);
+                startActivity(intent);
+            }
+        });
+    }
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_fd);
+
+        retrieveData();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -99,6 +119,7 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(FindDogActivity.this, "You Clicked at " +dogId[+ position], Toast.LENGTH_SHORT).show();
+
 
                 Intent intent = new Intent(FindDogActivity.this, DogActivity.class);
                 intent.putExtra("dogId",dogId[position]);
@@ -171,6 +192,8 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
         }
     }
 
+
+
     public void searchByType() {
 
         //download from the server
@@ -202,7 +225,6 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
             System.out.println("The list of Dog Id" + dogId[i]);
             System.out.println("The list of Dog Name Id" + dogName[i]);
         }
-
 
         CustomGrid adapter = new CustomGrid(FindDogActivity.this, dogId, posId);
         grid=(GridView)findViewById(R.id.grid);
@@ -282,6 +304,12 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
 
         String itemDogType = parent.getItemAtPosition(position).toString();
         if(itemDogType.equals("גזעי")){
+                Toast.makeText(parent.getContext(), "Selected: " + itemDogType, Toast.LENGTH_LONG).show();
+                dogTypeName = itemDogType; // Type of dog
+                searchByType();
+
+        }
+        if(itemDogType.equals("גזעי")){
 
 
             Toast.makeText(parent.getContext(), "Selected: " + itemDogType, Toast.LENGTH_LONG).show();
@@ -309,8 +337,19 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
             searchByGender();
 
         }
+        else if(itemDogType.equals("סוג")){
+
+            retrieveData();
+
+        }
+        else if(itemDogType.equals("מין")) {
+
+            retrieveData();
+        }
 
     }
+
+
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
