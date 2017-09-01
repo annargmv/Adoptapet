@@ -1,6 +1,7 @@
 package com.example.anna_rgmv.adoptapet;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -26,15 +28,24 @@ import java.util.List;
  */
 public class LoginActivity extends AppCompatActivity implements OnClickListener {
 
+    public static final String PREFS_NAME = "MyPrefsFile";
+    private static final String PREF_USERNAME = "username";
+    private static final String PREF_PASSWORD = "password1";
 
     Button mEmailLogInButton;
     Button mEmailSignUpButton;
+
+    CheckBox rememberMe;
+
     EditText emialText;
     EditText password;
+
     ImageView logo;
+
     String userId[];
     String dogId[];
     String currentUser;
+
 
     public void logIn(View view) {
         mEmailLogInButton = (Button) findViewById(R.id.email_login_button);
@@ -108,6 +119,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         logo = (ImageView) findViewById(R.id.logo);
         emialText = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
+        rememberMe = (CheckBox) findViewById(R.id.rememberMe);
 
     }
     public void sqliteUpdate(){
@@ -151,8 +163,40 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
 
     }
+
+    public void onCheckboxClicked(View view) {
+        // Is the view now checked?
+        boolean checked = ((CheckBox) view).isChecked();
+
+        // Check which checkbox was clicked
+        switch(view.getId()) {
+            case R.id.rememberMe:
+                if (checked) {
+                    // Put some meat on the sandwich
+                    getSharedPreferences(PREFS_NAME,MODE_PRIVATE)
+                            .edit()
+                            .putString(PREF_USERNAME, emialText.toString())
+                            .putString(PREF_PASSWORD, password.toString())
+                            .apply();
+
+                    SharedPreferences pref = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+                    String username = pref.getString(PREF_USERNAME, null);
+                    String password1 = pref.getString(PREF_PASSWORD, null);
+
+                    if (username == null || password1 == null) {
+                        emialText.setText(username);
+                        password.setText(password1);
+                        //Prompt for username and password
+                    }
+                }
+
+
+
+        }
+    }
     @Override
     public void onClick(View v) {
 
     }
+
 }

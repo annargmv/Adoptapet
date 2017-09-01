@@ -59,9 +59,9 @@
         <item>גזעי</item>
     </string-array>
     <string-array name="gender">
-        <item>מין</item>
-        <item>זכר</item>
-        <item>נקבה</item>
+        <item>Gender</item>
+        <item>Female</item>
+        <item>Male</item>
     </string-array>
     <string name="title_activity_fd_acivity">Find a dog</string>
     <string name="title_activity_inf_activiy">Information</string>
