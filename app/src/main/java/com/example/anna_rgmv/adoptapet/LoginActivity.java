@@ -13,13 +13,11 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,18 +32,14 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
     Button mEmailLogInButton;
     Button mEmailSignUpButton;
-
     CheckBox rememberMe;
-
     EditText emialText;
     EditText password;
-
     ImageView logo;
 
-    String userId[];
     String dogId[];
     String currentUser;
-
+    static SQLiteDatabase db;
 
     public void logIn(View view) {
         mEmailLogInButton = (Button) findViewById(R.id.email_login_button);
@@ -55,13 +49,10 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
         if (emialText.getText().length() != 0 && password.getText().length() != 0) {
             try {
-
                 ParseUser user = ParseUser.logIn(emialText.getText().toString(), password.getText().toString());
                 System.out.println("info for the user is " + user);
                 currentUser=ParseUser.getCurrentUser().getObjectId();
                 sqliteUpdate();
-//                Intent buttonIntent = new Intent(this, FindDogActivity.class);
-//                startActivity(buttonIntent);
 
             } catch (ParseException e) {
                 Toast.makeText(LoginActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
@@ -69,19 +60,12 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
             }
 
         } else if ((emialText.getText().length() == 0) && (password.getText().length() == 0)) {
-
             Toast.makeText(getApplicationContext(), "Please enter your email and password", Toast.LENGTH_LONG).show();
-
         } else if ((emialText.getText().length() == 0) && (password.getText().length() != 0)) {
-
             Toast.makeText(getApplicationContext(), "Please enter your email", Toast.LENGTH_LONG).show();
-
         } else if ((emialText.getText().length() != 0) && (password.getText().length() == 0)) {
-
             Toast.makeText(getApplicationContext(), "Please enter your email and password", Toast.LENGTH_LONG).show();
         }
-
-
     }
 
     public void signUp(View view) {
@@ -101,27 +85,14 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
             .server("http://ec2-34-201-149-100.compute-1.amazonaws.com:80/parse")
             .build()
         );
-        /*ParseObject object=new ParseObject("Exemple");
-          object.put("myNumber","123");
-        object.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if(e!=null){
-                    Log.i("testing:","Failed");
-                }else{
-                    Log.i("testing:","Successful");
-                }
-            }
-        });
-        */
 
 //Add setOnClickListener for the buttons
         logo = (ImageView) findViewById(R.id.logo);
         emialText = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         rememberMe = (CheckBox) findViewById(R.id.rememberMe);
-
     }
+
     public void sqliteUpdate(){
         //download from the server
         ParseQuery<ParseObject> query=ParseQuery.getQuery("Wishlist");
@@ -139,7 +110,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
             e.printStackTrace();
         }
         //create or open data base
-        SQLiteDatabase db=this.openOrCreateDatabase("AdoptAPat",MODE_PRIVATE,null);
+        db=this.openOrCreateDatabase("AdoptAPat",MODE_PRIVATE,null);
        // db.execSQL("DROP TABLE IF EXISTS wishlist " );
         db.execSQL("CREATE TABLE IF NOT EXISTS wishlist (userId VARCHAR , dogId VARCHAR)");
         db.execSQL("DELETE FROM wishlist where userId = '"+currentUser+"' ");

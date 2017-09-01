@@ -48,7 +48,7 @@ public class UserActivity extends AppCompatActivity {
         userEmail = (TextView) findViewById(R.id.emailText);
         userPhone = (TextView) findViewById(R.id.phoneUser);
 
-        db=this.openOrCreateDatabase("AdoptAPat",MODE_PRIVATE,null);
+        db=LoginActivity.db;
         currentUser=ParseUser.getCurrentUser().getObjectId();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -97,7 +97,6 @@ public class UserActivity extends AppCompatActivity {
         userName.setText("Hello " + user.get("Name").toString());
         userEmail.setText("Email: " + user.get("username").toString());
         userPhone.setText("Phone: " + user.get("Phone").toString());
-
     }
 
     @Override
@@ -107,7 +106,6 @@ public class UserActivity extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -123,7 +121,7 @@ public class UserActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.menuLogout:
-                DogActivity.updateParseWishlistTable(db);
+                DogActivity.updateParseWishlistTable();
                 ParseUser.logOut();
                 intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
@@ -137,8 +135,6 @@ public class UserActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             default: return false;
-
-
         }
     }
 }

@@ -18,11 +18,9 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,8 +45,6 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
     String[] dogGenderType;
     //String[] dogTypes;
 
-    //String currentUser;
-    //String data;
     String itemDogType;
     String dogTypeName;
     String dogGender;
@@ -91,8 +87,6 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
         });
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,14 +115,11 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                // Toast.makeText(FindDogActivity.this, "You Clicked at " +dogId[+ position], Toast.LENGTH_SHORT).show();
-
                 Intent intent = new Intent(FindDogActivity.this, DogActivity.class);
                 intent.putExtra("dogId",dogId[position]);
                 startActivity(intent);
             }
         });
-
-
 
         searchByName = (EditText) findViewById(R.id.searchByname);
         typeSpinner = (Spinner)findViewById(R.id.typeSpinner);
@@ -204,7 +195,6 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
         });
-
     }
 
     @Override
@@ -229,7 +219,7 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
                 startActivity(intent);
                 return true;
             case R.id.menuLogout:
-                DogActivity.updateParseWishlistTable(db);
+                DogActivity.updateParseWishlistTable();
                 ParseUser.logOut();
                 intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
@@ -270,10 +260,8 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
             e.printStackTrace();
         }
         //create or open data base
-        db = this.openOrCreateDatabase("AdoptAPet", MODE_PRIVATE, null);
-        // db.execSQL("DROP TABLE IF EXISTS wishlist " );
+        db=LoginActivity.db;
         db.execSQL("CREATE TABLE IF NOT EXISTS dogsForSearch (name VARCHAR ,objectId VARCHAR ,dogType VARCHAR)");
-        //db.execSQL("DELETE FROM wishlist where userId = '"+currentUser+"' ");
         for (int i = 0; i < dogId.length; i++) {
             db.execSQL("INSERT INTO dogsForSearch (name ,objectId ,dogType) VALUES ('" + dogName + "','" + dogId[i] + "','" + dogTypeName + "')");
             System.out.println("The list of Dog Id" + dogId[i]);
@@ -288,13 +276,11 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                // Toast.makeText(FindDogActivity.this, "You Clicked at " +dogId[+ position], Toast.LENGTH_SHORT).show();
-
                 Intent intent = new Intent(FindDogActivity.this, DogActivity.class);
                 intent.putExtra("dogId",dogId[position]);
                 startActivity(intent);
             }
         });
-
     }
 
     public void searchByGender(){
@@ -304,7 +290,6 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
         query.whereEqualTo("gender", dogGender);
         query.selectKeys(Arrays.asList("objectId"));
         try {
-
             List<ParseObject> test = query.find();
             dogId = new String[test.size()];
             dogGenderType = new String[test.size()];
@@ -323,10 +308,8 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
             e.printStackTrace();
         }
         //create or open data base
-        db = this.openOrCreateDatabase("AdoptAPet", MODE_PRIVATE, null);
-        // db.execSQL("DROP TABLE IF EXISTS wishlist " );
+        db=LoginActivity.db;
         db.execSQL("CREATE TABLE IF NOT EXISTS dogsForSearch (name VARCHAR ,objectId VARCHAR ,isMale VARCHAR)");
-        //db.execSQL("DELETE FROM wishlist where userId = '"+currentUser+"' ");
         for (int i = 0; i < dogId.length; i++) {
             db.execSQL("INSERT INTO dogsForSearch (name ,objectId ,dogType) VALUES ('" + dogName + "','" + dogId[i] + "','" + dogGender + "')");
             System.out.println("The list of Dog Id" + dogId[i]);
@@ -350,7 +333,6 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
         });
     }
 
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // An item was selected. You can retrieve the selected item using
@@ -361,11 +343,9 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
 
         if(itemDogType.equals("גזעי")){
 
-
             Toast.makeText(parent.getContext(), "Selected: " + itemDogType, Toast.LENGTH_LONG).show();
             dogTypeName = itemDogType; // Type of dog
             searchByType();
-
         }
         else if(itemDogType.equals("מעורב")){
 
@@ -396,10 +376,7 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
 
             retrieveData();
         }
-
     }
-
-
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
