@@ -1,5 +1,6 @@
 package com.example.anna_rgmv.adoptapet;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,16 +9,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,8 +31,13 @@ import java.util.List;
 public class LoginActivity extends AppCompatActivity implements OnClickListener {
 
     public static final String PREFS_NAME = "MyPrefsFile";
-    private static final String PREF_USERNAME = "username";
-    private static final String PREF_PASSWORD = "password1";
+    //private static final String PREF_USERNAME = "username";
+    //private static final String PREF_PASSWORD = "password1";
+
+    //new
+    private SharedPreferences loginPreferences;
+    private SharedPreferences.Editor loginPrefsEditor;
+    private Boolean saveLogin;
 
     Button mEmailLogInButton;
     Button mEmailSignUpButton;
@@ -39,18 +48,21 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
     String dogId[];
     String currentUser;
+    String userName;
+    String userPassword;
     static SQLiteDatabase db;
 
     public void logIn(View view) {
-        mEmailLogInButton = (Button) findViewById(R.id.email_login_button);
 
-        Intent buttonIntent = new Intent(this, FindDogActivity.class);
-        startActivity(buttonIntent);
+//        Intent buttonIntent = new Intent(this, FindDogActivity.class);
+//        startActivity(buttonIntent);
 
         if (emialText.getText().length() != 0 && password.getText().length() != 0) {
             try {
                 ParseUser user = ParseUser.logIn(emialText.getText().toString(), password.getText().toString());
-                System.out.println("info for the user is " + user);
+//
+                Intent buttonIntent = new Intent(this, FindDogActivity.class);
+                startActivity(buttonIntent);
                 currentUser=ParseUser.getCurrentUser().getObjectId();
                 sqliteUpdate();
 
@@ -69,7 +81,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     }
 
     public void signUp(View view) {
-        mEmailSignUpButton = (Button) findViewById(R.id.email_sign_up_button);
+
         Intent buttonIntent = new Intent(this, SignupActivity.class);
         startActivity(buttonIntent);
     }
@@ -81,9 +93,9 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
         //initialize pasre service
         Parse.initialize(new Parse.Configuration.Builder(this)
-            .applicationId("86d41a93f1bd5d33ae9bba0c7ac97da4c326eafd")
-            .server("http://ec2-34-201-149-100.compute-1.amazonaws.com:80/parse")
-            .build()
+                .applicationId("86d41a93f1bd5d33ae9bba0c7ac97da4c326eafd")
+                .server("http://ec2-34-201-149-100.compute-1.amazonaws.com:80/parse")
+                .build()
         );
 
 //Add setOnClickListener for the buttons
@@ -91,11 +103,64 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         emialText = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         rememberMe = (CheckBox) findViewById(R.id.rememberMe);
+        mEmailLogInButton = (Button) findViewById(R.id.email_login_button);
+        mEmailSignUpButton = (Button) findViewById(R.id.email_sign_up_button);
+
+
+        //new
+        //mEmailLogInButton.setOnClickListener(this);
+        rememberMe.setOnClickListener(this);
+        mEmailSignUpButton.setOnClickListener(this);
+
+        loginPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        loginPrefsEditor = loginPreferences.edit();
+
+        saveLogin = loginPreferences.getBoolean("saveLogin", false);
+        if (saveLogin == true) {
+            emialText.setText(loginPreferences.getString("username", ""));
+            password.setText(loginPreferences.getString("password", ""));
+            rememberMe.setChecked(true);
+        }
     }
+
+    public void onClick(View view) {
+        switch(view.getId()) {
+            case R.id.rememberMe:
+            if (view.equals(rememberMe)) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(emialText.getWindowToken(), 0);
+
+                userName = emialText.getText().toString();
+                userPassword = password.getText().toString();
+
+                if (rememberMe.isChecked()) {
+                    loginPrefsEditor.putBoolean("saveLogin", true);
+                    loginPrefsEditor.putString("username", userName);
+                    loginPrefsEditor.putString("password", userPassword);
+                    loginPrefsEditor.commit();
+                } else {
+                    loginPrefsEditor.clear();
+                    loginPrefsEditor.commit();
+                }
+
+                //doSomethingElse();
+            }
+        }
+
+        if (view.equals(mEmailSignUpButton)) {
+            signUp(this.findViewById(R.id.email_sign_up_button));
+        }
+    }
+
+//    public void doSomethingElse() {
+//        startActivity(new Intent(LoginActivity.this, FindDogActivity.class));
+////        LoginActivity.this.finish();
+//    }
+
 
     public void sqliteUpdate(){
         //download from the server
-        ParseQuery<ParseObject> query=ParseQuery.getQuery("Wishlist");
+        ParseQuery<ParseObject> query= ParseQuery.getQuery("Wishlist");
         query.whereEqualTo("userId",currentUser);
         query.selectKeys(Arrays.asList("objectId"));
 
@@ -135,39 +200,37 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
     }
 
-    public void onCheckboxClicked(View view) {
-        // Is the view now checked?
-        boolean checked = ((CheckBox) view).isChecked();
-
-        // Check which checkbox was clicked
-        switch(view.getId()) {
-            case R.id.rememberMe:
-                if (checked) {
-                    // Put some meat on the sandwich
-                    getSharedPreferences(PREFS_NAME,MODE_PRIVATE)
-                            .edit()
-                            .putString(PREF_USERNAME, emialText.toString())
-                            .putString(PREF_PASSWORD, password.toString())
-                            .apply();
-
-                    SharedPreferences pref = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
-                    String username = pref.getString(PREF_USERNAME, null);
-                    String password1 = pref.getString(PREF_PASSWORD, null);
-
-                    if (username == null || password1 == null) {
-                        emialText.setText(username);
-                        password.setText(password1);
-                        //Prompt for username and password
-                    }
-                }
-
-
-
-        }
-    }
-    @Override
-    public void onClick(View v) {
-
-    }
+//    public void onCheckboxClicked(View view) {
+//        //String currentUser = String.valueOf(ParseUser.getCurrentUser().get("password"));
+//        //String currentUserEmail = String.valueOf(ParseUser.getCurrentUser().get("email"));
+//
+//        // Is the view now checked?
+//        boolean checked = ((CheckBox) view).isChecked();
+//
+//        // Check which checkbox was clicked
+//        switch(view.getId()) {
+//            case R.id.rememberMe:
+//                if (checked) {
+//
+//                    getSharedPreferences(PREFS_NAME,MODE_PRIVATE)
+//                            .edit()
+//                            .putString(PREF_USERNAME, emialText.toString())
+//                            .putString(PREF_PASSWORD, password.toString())
+//                            .apply();
+//
+//                    SharedPreferences pref = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+//                    String username = pref.getString(PREF_USERNAME, null);
+//                    String password1 = pref.getString(PREF_PASSWORD, null);
+//
+//                    if (username == null || password1 == null) {
+//                        emialText.setText(username);
+//                        password.setText(password1);
+//
+//                        //Prompt for username and password
+//                    }
+//                }
+//
+//        }
+//    }
 
 }

@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import com.parse.ParseUser;
 
+import static com.example.anna_rgmv.adoptapet.LoginActivity.db;
+
 public class InfoActivity extends AppCompatActivity {
 
     @Override
@@ -53,7 +55,7 @@ public class InfoActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.menuLogout:
-                DogActivity.updateParseWishlistTable();
+                DogActivity.updateParseWishlistTable(db);
                 ParseUser.logOut();
                 intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);

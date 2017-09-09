@@ -17,7 +17,7 @@ import com.parse.SignUpCallback;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SignupActivity extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity{
 
     Button buttonSubmit;
     EditText etPhone,etName,etPassword,etMail;
