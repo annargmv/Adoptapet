@@ -62,5 +62,73 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="356dp" />
 
+    <TextView
+        android:id="@+id/contentPhonetitle"
+        android:layout_width="343dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="300dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginStart="8dp"
+        android:text="טלפון"
+        android:textAlignment="viewEnd"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/contentPhone"
+        android:layout_width="343dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="300dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginStart="8dp"
+        android:text="  055-6675229"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/contentMailtitle"
+        android:layout_width="343dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="250dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginStart="8dp"
+        android:text="מייל"
+        android:textAlignment="viewEnd"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/contentMail"
+        android:layout_width="343dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="250dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginStart="8dp"
+        android:text="info@HerzeliaLovesAnimals.org"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>
