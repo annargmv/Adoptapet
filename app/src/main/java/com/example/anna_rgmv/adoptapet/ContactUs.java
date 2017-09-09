@@ -1,6 +1,7 @@
 package com.example.anna_rgmv.adoptapet;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -10,15 +11,16 @@ import android.view.MenuItem;
 import android.view.View;
 import com.parse.ParseUser;
 
-import static com.example.anna_rgmv.adoptapet.LoginActivity.db;
 
 public class ContactUs extends AppCompatActivity {
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
 
+        db=LoginActivity.db;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

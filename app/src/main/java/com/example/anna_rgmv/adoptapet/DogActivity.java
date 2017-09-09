@@ -69,8 +69,7 @@ public class DogActivity extends AppCompatActivity {
 
         currentUser=ParseUser.getCurrentUser().getObjectId();
         //for open the data base
-        db=this.openOrCreateDatabase("AdoptAPat",MODE_PRIVATE,null);
-
+        db=LoginActivity.db;
         ///////////////////////Retrieving dogs id from parse//////////////////////////
         ParseQuery query = new ParseQuery("Dog");
         query.selectKeys(Arrays.asList("objectId"));
@@ -262,14 +261,16 @@ public class DogActivity extends AppCompatActivity {
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
-                for (ParseObject object : objects) {
-                    try {
-                        object.delete();
-                        object.saveInBackground();
-                    } catch (ParseException ex) {
-                        ex.printStackTrace();
-                    }
+                if(objects!=null&&objects.size()>0){
+                    for (ParseObject object : objects) {
+                        try {
+                            object.delete();
+                            object.saveInBackground();
+                        } catch (ParseException ex) {
+                            ex.printStackTrace();
+                        }
 
+                    }
                 }
             }
         });
