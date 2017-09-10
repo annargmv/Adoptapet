@@ -279,8 +279,8 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
         //db.execSQL("DELETE FROM wishlist where userId = '"+currentUser+"' ");
         for (int i = 0; i < dogId.length; i++) {
             db.execSQL("INSERT INTO dogsForSearch (name ,objectId ,dogType) VALUES ('" + dogName + "','" + dogId[i] + "','" + dogTypeName + "')");
-            System.out.println("The list of Dog Id" + dogId[i]);
-            System.out.println("The list of Dog Name Id" + dogName[i]);
+//            System.out.println("The list of Dog Id" + dogId[i]);
+//            System.out.println("The list of Dog Name Id" + dogName[i]);
         }
 
         CustomGrid adapter = new CustomGrid(FindDogActivity.this, dogId, posId);

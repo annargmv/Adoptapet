@@ -4,7 +4,7 @@
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
-                                             android:background="@android:color/holo_orange_dark"
+                                             android:background="@android:color/holo_orange_light"
                                              tools:context="com.example.anna_rgmv.adoptapet.UserActivity">
 
     <ScrollView
@@ -18,7 +18,7 @@
         <LinearLayout
             android:layout_width="371dp"
             android:layout_height="431dp"
-            android:background="@android:color/holo_orange_light"
+            android:background="@android:color/holo_orange_dark"
             android:orientation="vertical">
 
             <GridView

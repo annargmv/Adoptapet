@@ -57,10 +57,12 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
             try {
                 //check id the user is registered
                 ParseUser user = ParseUser.logIn(emialText.getText().toString(), password.getText().toString());
-                Intent buttonIntent = new Intent(this, FindDogActivity.class);
-                startActivity(buttonIntent);
+
                 currentUser=ParseUser.getCurrentUser().getObjectId();
                 sqliteUpdate();
+
+                Intent buttonIntent = new Intent(this, FindDogActivity.class);
+                startActivity(buttonIntent);
 
             } catch (ParseException e) {
                 Toast.makeText(LoginActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
