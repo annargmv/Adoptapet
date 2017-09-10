@@ -108,16 +108,34 @@ public class DogActivity extends AppCompatActivity {
         data = getIntent().getExtras().getString("dogId");
 
 
-        if(isInWishlist())
+        if(isInWishlist()) {
             imageWishList.setImageResource(R.drawable.iconwishlist2);
 
+        }
+        dogFeatures();
 
 
+        grid.setAdapter(adapter);
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Toast.makeText(DogActivity.this, "You Clicked at " + dogId[+ position], Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(DogActivity.this, DogActivity.class);
+                intent.putExtra("dogId", dogId[position]);
+                startActivity(intent);
+
+            }
+        });
+    }
+
+    public void dogFeatures(){
         // Locate the class table named "Dog" in Parse.com
         ParseQuery<ParseObject> query2=ParseQuery.getQuery("Dog");
 
         // Locate the objectId from the class
         query2.getInBackground(data, new GetCallback<ParseObject>() {
+
             public void done(ParseObject object,ParseException e) {
                 // Locate the column named "ImageDog" and set the string
                 ParseFile fileObject = (ParseFile) object.get("ImageDog");
@@ -195,19 +213,6 @@ public class DogActivity extends AppCompatActivity {
                         }
                     }
                 });
-            }
-        });
-
-        grid.setAdapter(adapter);
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(DogActivity.this, "You Clicked at " + dogId[+ position], Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(DogActivity.this, DogActivity.class);
-                intent.putExtra("dogId", dogId[position]);
-                startActivity(intent);
-
             }
         });
     }

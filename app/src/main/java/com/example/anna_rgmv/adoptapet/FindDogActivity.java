@@ -163,6 +163,7 @@ public class FindDogActivity extends AppCompatActivity implements OnItemSelected
                 String dogName = String.valueOf(s);
 
                 if(dogName.equals("")){
+                    Toast.makeText(FindDogActivity.this, "The dog you are looking for doesn't exists", Toast.LENGTH_SHORT).show();
                     retrieveData();
                 }
                 else {

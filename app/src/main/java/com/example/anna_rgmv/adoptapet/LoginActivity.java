@@ -31,17 +31,15 @@ import java.util.List;
 public class LoginActivity extends AppCompatActivity implements OnClickListener {
 
     public static final String PREFS_NAME = "MyPrefsFile";
-    //private static final String PREF_USERNAME = "username";
-    //private static final String PREF_PASSWORD = "password1";
-
-    //new
     private SharedPreferences loginPreferences;
     private SharedPreferences.Editor loginPrefsEditor;
     private Boolean saveLogin;
 
     Button mEmailLogInButton;
     Button mEmailSignUpButton;
+
     CheckBox rememberMe;
+
     EditText emialText;
     EditText password;
     ImageView logo;
@@ -50,17 +48,15 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     String currentUser;
     String userName;
     String userPassword;
+
     static SQLiteDatabase db;
 
     public void logIn(View view) {
 
-//        Intent buttonIntent = new Intent(this, FindDogActivity.class);
-//        startActivity(buttonIntent);
-
         if (emialText.getText().length() != 0 && password.getText().length() != 0) {
             try {
+                //check id the user is registered
                 ParseUser user = ParseUser.logIn(emialText.getText().toString(), password.getText().toString());
-//
                 Intent buttonIntent = new Intent(this, FindDogActivity.class);
                 startActivity(buttonIntent);
                 currentUser=ParseUser.getCurrentUser().getObjectId();
@@ -80,6 +76,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         }
     }
 
+
     public void signUp(View view) {
 
         Intent buttonIntent = new Intent(this, SignupActivity.class);
@@ -98,7 +95,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
                 .build()
         );
 
-//Add setOnClickListener for the buttons
+        //initialize the variables
         logo = (ImageView) findViewById(R.id.logo);
         emialText = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
@@ -107,7 +104,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         mEmailSignUpButton = (Button) findViewById(R.id.email_sign_up_button);
 
 
-        //new
+        //remember me checkbox init
         //mEmailLogInButton.setOnClickListener(this);
         rememberMe.setOnClickListener(this);
         mEmailSignUpButton.setOnClickListener(this);
@@ -123,6 +120,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         }
     }
 
+    //onclick remember me functionality
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.rememberMe:
@@ -158,6 +156,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 //    }
 
 
+    // update the wish list sql
     public void sqliteUpdate(){
         //download from the server
         ParseQuery<ParseObject> query= ParseQuery.getQuery("Wishlist");
