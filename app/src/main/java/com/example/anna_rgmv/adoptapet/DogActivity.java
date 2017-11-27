@@ -33,27 +33,27 @@ import java.util.List;
 
 public class DogActivity extends AppCompatActivity {
 
-    ImageView dogImage;
-    ImageView imageWishList;
-    TextView dogName;
-    TextView dogInfo;
+    private ImageView dogImage;
+    private ImageView imageWishList;
+    private TextView dogName;
+    private TextView dogInfo;
 
     //dog's info
-    ImageView trainedDog;
-    ImageView kidsDog;
-    ImageView dangerDog;
-    ImageView hipoDog;
-    ImageView homeDog;
-    ImageView gardDog;
+    private ImageView trainedDog;
+    private ImageView kidsDog;
+    private ImageView dangerDog;
+    private ImageView hipoDog;
+    private ImageView homeDog;
+    private ImageView gardDog;
 
-    GridView grid;
+     public GridView grid;
 
-    String[] dogId;
-    String currentUser;
-    String data;
-    int[] posId;
+    public String[] dogId;
+    public String currentUser;
+    public String data;
+    public int[] posId;
 
-    SQLiteDatabase db;
+    public SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
