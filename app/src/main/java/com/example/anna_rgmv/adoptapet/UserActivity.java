@@ -19,19 +19,19 @@ import com.parse.ParseUser;
 
 public class UserActivity extends AppCompatActivity {
 
-    TextView userName;
-    TextView userEmail;
-    TextView userPhone;
-    SQLiteDatabase db;
-    String currentUser;
+    private TextView userName;
+    private TextView userEmail;
+    private TextView userPhone;
+    private SQLiteDatabase db;
+    private String currentUser;
 
-    GridView grid;
-    String[] dogId;
+    public GridView grid;
+    public String[] dogId;
 
-    int[] posId;
+    public int[] posId;
 
-    ParseObject dogs = new ParseObject("Dog");
-    String objectId = dogs.getObjectId();
+    public ParseObject dogs = new ParseObject("Dog");
+    public String objectId = dogs.getObjectId();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
