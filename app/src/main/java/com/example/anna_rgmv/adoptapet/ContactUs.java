@@ -13,7 +13,7 @@ import com.parse.ParseUser;
 
 
 public class ContactUs extends AppCompatActivity {
-    SQLiteDatabase db;
+    public SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

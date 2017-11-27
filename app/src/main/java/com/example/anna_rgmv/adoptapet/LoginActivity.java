@@ -35,21 +35,21 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     private SharedPreferences.Editor loginPrefsEditor;
     private Boolean saveLogin;
 
-    Button mEmailLogInButton;
-    Button mEmailSignUpButton;
+    private Button mEmailLogInButton;
+    private Button mEmailSignUpButton;
 
-    CheckBox rememberMe;
+    private CheckBox rememberMe;
 
-    EditText emialText;
-    EditText password;
-    ImageView logo;
+    private EditText emialText;
+    private EditText password;
+    private ImageView logo;
 
-    String dogId[];
-    String currentUser;
-    String userName;
-    String userPassword;
+    public String dogId[];
+    public String currentUser;
+    public String userName;
+    public String userPassword;
 
-    static SQLiteDatabase db;
+    public static SQLiteDatabase db;
 
     public void logIn(View view) {
 

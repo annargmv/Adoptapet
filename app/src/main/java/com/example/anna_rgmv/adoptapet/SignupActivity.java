@@ -19,11 +19,11 @@ import java.util.regex.Pattern;
 
 public class SignupActivity extends AppCompatActivity{
 
-    Button buttonSubmit;
-    EditText etPhone,etName,etPassword,etMail;
-    Pattern patternEmail,patternPass;
-    Matcher matcherEmail,matcherPass;
-    ParseUser user;
+    private Button buttonSubmit;
+    private EditText etPhone,etName,etPassword,etMail;
+    private Pattern patternEmail,patternPass;
+    private Matcher matcherEmail,matcherPass;
+    public ParseUser user;
 
     private static final String EMAIL_PATTERN =
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"

@@ -29,31 +29,31 @@ import java.util.List;
 public class FindDogActivity extends AppCompatActivity implements OnItemSelectedListener, TextWatcher {
 
     //Initializing variables
-    EditText searchByName;
-    Spinner typeSpinner;
-    Spinner genderSpinner;
-    GridView grid;
+    private EditText searchByName;
+    private Spinner typeSpinner;
+    private Spinner genderSpinner;
+    public GridView grid;
 
     //array for the adapters
     //ArrayList<String> typeArray = new ArrayList<String>();
     //ArrayList<String> genderArray = new ArrayList<String>();
 
     //id of the dogs
-    String[] dogId;
+    public String[] dogId;
     //image per dog
-    int[] posId;
+    public int[] posId;
 
-    String[] dogName;
-    String[] dogGenderType;
+    public String[] dogName;
+    public String[] dogGenderType;
     //String[] dogTypes;
 
     //String currentUser;
     //String data;
-    String itemDogType;
-    String dogTypeName;
-    String dogGender;
+    public String itemDogType;
+    public String dogTypeName;
+    public String dogGender;
 
-    SQLiteDatabase db;
+    public SQLiteDatabase db;
     public void retrieveData(){
 
         ///////////////////////Retrieving dogs id from parse//////////////////////////
